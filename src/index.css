@@ -1,0 +1,830 @@
+/* home */
+.containerSide{
+    display: flex;
+    margin-top: 10px;
+}
+.home{
+    flex: 4;    
+}
+
+.homeWidgets{
+    display: flex;
+    margin: 20px;
+} 
+/* end of home */
+
+/* side-Bar */
+.sidebar {
+   flex: 1;
+   height: calc(100vh - 50px);  
+   background-color: rgb(251, 251, 255);  
+   position: sticky; 
+   top: 50px;  
+}
+
+.sidebarWrapper {
+  padding: 20px;
+  color: #555;
+}
+
+.sidebarMenu {
+  margin-bottom: 10px;
+}
+
+.sidebarTitle {
+  font-size: 13px;
+  color: rgb(187, 186, 186);
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 5px;
+}
+
+.sidebarListItem {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* .sidebarListItem.active,
+.sidebarListItem:hover {
+  background-color: rgb(240, 240, 255);
+  background-color: rgb(64, 202, 64);
+  color: #555;
+
+} */
+
+.sidebarIcon{
+    margin-right: 5px;
+    font-size: 20px !important;
+}
+/* end -- of -- sidebar */
+
+/* featured */
+
+.featured {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.featuredItem {
+  flex: 1;
+  text-align: center;
+  margin: 0px 20px;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  /* background-color: rgb(71, 214, 126); */
+}
+
+.featuredTitle{
+    font-size: 16px;
+}
+
+.featuredMoneyContainer{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+}
+
+.featuredMoney{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.featuredMoneyRate{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.featuredIcon{
+    font-size: 14px;
+    margin-left: 5px;
+    color: green;
+}
+
+.featuredIcon.negative{
+    color: red;
+}
+
+.featuredSub{
+    font-size: 15px;
+    color: gray;
+}
+
+/* end of featured */
+
+/* Chartjs */
+.chart {
+  margin: 20px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.chartTitle {
+  margin-bottom: 20px;
+}
+/* end of chartjs */
+
+/* Login */
+
+.wave{
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ height: 100%;
+ z-index: -1;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+
+.img{
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+}
+
+.login-content{
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ text-align: center;
+}
+
+.img img{
+ width: 500px;
+}
+
+form{
+ width: 360px;
+}
+
+.login-content img{
+    height: 100px;
+}
+
+.login-content h2{
+ margin: 15px 0;
+ color: #333;
+ text-transform: uppercase;
+ font-size: 2.9rem;
+}
+
+.login-content .input-div{
+ position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.login-content .input-div.one{
+ margin-top: 0;
+}
+
+.i{
+ color: #d9d9d9;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.i i{
+ transition: .3s;
+}
+
+.input-div > div{
+    position: relative;
+ height: 45px;
+}
+
+.input-div > div > h5{
+ position: absolute;
+ left: 10px;
+ top: 50%;
+ transform: translateY(-50%);
+ color: #999;
+ font-size: 18px;
+ transition: .3s;
+}
+
+.input-div:before, .input-div:after{
+ content: '';
+ position: absolute;
+ bottom: -2px;
+ width: 0%;
+ height: 2px;
+ background-color: #38d39f;
+ transition: .4s;
+}
+
+.input-div:before{
+ right: 50%;
+}
+
+.input-div:after{
+ left: 50%;
+}
+
+.input-div.focus:before, .input-div.focus:after{
+ width: 50%;
+}
+
+.input-div.focus > div > h5{
+ top: -5px;
+ font-size: 15px;
+}
+
+.input-div.focus > .i > i{
+ color: #38d39f;
+}
+
+.input-div > div > input{
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ border: none;
+ outline: none;
+ background: none;
+ padding: 0.5rem 0.7rem;
+ font-size: 1.2rem;
+ color: #555;
+ font-family: 'poppins', sans-serif;
+}
+
+.input-div.pass{
+ margin-bottom: 4px;
+}
+
+a{
+ display: block;
+ text-align: right;
+ text-decoration: none;
+ color: #999;
+ font-size: 0.9rem;
+ transition: .3s;
+}
+
+a:hover{
+ color: #38d39f;
+}
+
+.btn{
+ display: block;
+ width: 100%;
+ height: 50px;
+ border-radius: 25px;
+ outline: none;
+ border: none;
+ background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+ background-size: 200%;
+ font-size: 1.2rem;
+ color: #fff;
+ font-family: 'Poppins', sans-serif;
+ text-transform: uppercase;
+ margin: 1rem 0;
+ cursor: pointer;
+ transition: .5s;
+}
+.btn:hover{
+ background-position: right;
+}
+
+
+@media screen and (max-width: 1050px){
+ .container{
+  grid-gap: 5rem;
+ }
+}
+
+@media screen and (max-width: 1000px){
+ form{
+  width: 290px;
+ }
+
+ .login-content h2{
+        font-size: 2.4rem;
+        margin: 8px 0;
+ }
+
+ .img img{
+  width: 400px;
+ }
+}
+
+@media screen and (max-width: 900px){
+ .container{
+  grid-template-columns: 1fr;
+ }
+
+ .img{
+  display: none;
+ }
+
+ .wave{
+  display: none;
+ }
+
+ .login-content{
+  justify-content: center;
+ }
+}
+/* end of Login */
+
+/* topbar */
+
+.topbar {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarWrapper {
+  height: 100%;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 25px;
+  color: darkblue;
+  cursor: pointer;
+}
+
+.topRight{
+    display: flex;
+    align-items: center;
+}
+
+.topbarIconContainer {
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #555;
+}
+
+.topIconBadge{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.topAvatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* end of topbar */
+
+/* widget Lg */
+.widgetLg {
+  flex: 2;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+}
+
+.widgetLgTitle {
+  font-size: 22px;
+  font-weight: 600;
+}
+.review{
+  font-size: 30px;
+  text-align: center;
+}
+
+.widgetLgTable{
+  width: 100%;
+  border-spacing: 20px;
+}
+
+.widgetLgTh{
+  text-align: left;
+}
+
+.widgetLgUser{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.widgetLgImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.widgetLgDate,.widgetLgAmount,.widgetLgName{
+  font-weight: 300;
+  margin: 10px;
+}
+
+.widgetLgButton {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+}
+
+.widgetLgButton.Approved{
+    background-color: #e5faf2;
+    color: #3bb077;
+}
+.widgetLgButton.Declined{
+    background-color: #fff0f1;
+    color: #d95087;
+
+}
+.widgetLgButton.Pending{
+    background-color: #ebf1fe;
+    color: #2a7ade;
+}
+/* end of widget lg */
+
+/* widget sm */
+.widgetSm{
+    flex: 1;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.widgetSmTitle{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.widgetSmImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.widgetSmList{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widgetSmListItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.widgetSmUser{
+    display: flex;
+    flex-direction: column;
+}
+
+.widgetSmUsername{
+    font-weight: 600;
+}
+
+.widgetSmUserTitle{
+    font-weight: 300;
+}
+
+.widgetSmButton{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 10px;
+    background-color: #eeeef7;
+    color: #555;
+    cursor: pointer;
+}
+
+.widgetSmIcon{
+    font-size: 16px !important;
+    margin-right: 5px;
+}
+
+/* end of widget sm */
+
+/* users */
+
+.Side{
+    display: flex;
+    margin-top: 10px;
+}
+.user {
+  flex: 4;
+  padding: 20px;
+}
+
+.pro{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.userTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.userContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.userShow {
+  flex: 1;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.userUpdate {
+  flex: 2;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin-left: 20px;
+}
+
+.userShowTop {
+  display: flex;
+  align-items: center;
+}
+
+.userShowImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.userShowUsername {
+  font-weight: 600;
+}
+
+.userShowUserTitle {
+  font-weight: 900;
+}
+
+.userShowBottom{
+    margin-top: 20px;
+}
+
+.userShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(175, 170, 170);
+}
+
+.userShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+    color: #444;
+}
+
+.userShowIcon{
+    font-size: 16px !important;
+}
+
+.userShowInfoTitle{
+  margin-left: 10px;
+  font-weight: 900;
+
+}
+
+.userUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.userUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.userUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.userUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.userUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
+
+.userUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.userUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.userUpdateIcon{
+    cursor: pointer;
+}
+
+.userUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(64, 202, 64);
+    color: white;
+    font-weight: 600;
+}
+/* end of users */
+
+/* userList */
+
+.userList {
+  flex: 4;
+}
+
+.userListUser {
+  display: flex;
+  align-items: center;
+}
+
+.userListImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.userListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.userListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+/* end of userList */
+
+/* productList */
+
+.productList{
+    flex: 4;
+}
+
+.productListItem{
+    display: flex;
+    align-items: center;
+}
+
+.productListImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+.productListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.productListDelete{
+    color: red;
+    cursor: pointer;
+}
+/* end of productList */
+
+
+/* search input */
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 20px 10px 10px;
+    
+}
+
+.searchInput{
+    width: 300px;
+    height: 20px;
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+}
+.searchButton{
+    width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(34, 165, 34);
+    cursor: pointer; 
+    margin-left: 10px;
+}
+/* end of search input */
+
+.services{
+    display: flex;
+}
+.statusText{
+  padding: 5px;
+  font-size: 8px;
+  background-color: #32be8f;
+
+}
+

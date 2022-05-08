@@ -1,0 +1,2 @@
+export const GET_ALL_TENANT = "GET_ALL_TENANT";
+export const GET_SINGLE_TENANT = "GET_SINGLE_TENANT";

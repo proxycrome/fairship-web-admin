@@ -23,6 +23,8 @@ function ServiceProviderList() {
     dispatch(getServiceProviderList());
   }, [dispatch]);
 
+  console.log(serProviderList)
+
   //!come back to this...
   // const handleDelete = (id) => {
   //   setData(data.filter((item) => item.id !== id));

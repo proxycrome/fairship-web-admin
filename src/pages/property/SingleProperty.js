@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
-import { singlePropertyById } from "../../redux/property/propertyActions";
+import { singlePropertyById ,propertyapproval} from "../../redux/property/propertyActions";
 
 function SingleProperty() {
   const dispatch = useDispatch();
@@ -24,6 +24,11 @@ function SingleProperty() {
   useEffect(() => {
     dispatch(singlePropertyById(params.id));
   }, [params]);
+
+  const propertyapprove = (id) => {
+    console.log(id)
+    dispatch(propertyapproval(id))
+  }
 
   return (
     <div className="containerSide">
@@ -148,6 +153,12 @@ function SingleProperty() {
               <div className="userShowIcon">Unit No:</div>
               <span className="userShowInfoTitle">{singleProperty.unitNo}</span>
             </div>
+
+            {singleProperty.status !== 'ACTIVE' ?
+            <button className="userListEdit" onClick={propertyapprove(params.id)}>UnApproved</button> 
+            :
+            <button className="userListEdit">Approved</button> 
+            }
           </div>
         </div>
       </div>

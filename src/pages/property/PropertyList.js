@@ -6,13 +6,15 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
-import { getPropertyList } from "../../redux/property/propertyActions";
+import { CircularProgress} from "@material-ui/core";
+import { getPropertyList, propertyapproval } from "../../redux/property/propertyActions";
 
 
 
 export default function PropertyList() {
   const [search, setSearch] = useState("");
+  // const [property, setProperty] = useState('COLLECTIVE_ENTITY');
+  const [stat, setStat] = useState(false)
   const dispatch = useDispatch();
   const propertyList = useSelector((state) => state.properties);
   const properties = propertyList.allProperties.entities;
@@ -22,8 +24,18 @@ export default function PropertyList() {
 
   //getAllAgent
   useEffect(() => {
-    dispatch(getPropertyList());
-  }, [dispatch]);
+    
+    dispatch(getPropertyList())
+    // console.log(property)
+    
+ }, [dispatch]);
+
+
+
+//  const propertyapprove = (id) => {
+//    dispatch(propertyapproval(id))
+//    setStat(true)
+//  }
 
   //! come back to it.....
   // const handleDelete = (id) => {
@@ -78,20 +90,32 @@ export default function PropertyList() {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        console.log(params)
         return (
           <>
             <Link to={"/property-list/" + params.row.id}>
               <button className="userListEdit">View</button>
             </Link>
-            <DeleteOutline
+              {stat ?
+              (
+                <button className="userListEdit">Approved</button>
+              ) : 
+              (
+                params.row.status !== 'ACTIVE'  ? 
+                <button className="userListEdit">UnApproved</button>
+                : null
+              )} 
+        
+            {/* <DeleteOutline
               className="userListDelete"
               // onClick={() => handleDelete(params.row.id)}
-            />
+            /> */}
           </>
         );
       },
     },
   ];
+
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -120,6 +144,11 @@ export default function PropertyList() {
               onChange={handleChange}
             />
           </div>
+          {/* <select value='' onChange={(e) => setProperty(e.target.value)}>
+            <option value=' COLLECTIVE_ENTITY'>Collective Property</option>
+            <option value='SINGLE_ENTITY'>Single Entity Property</option>
+            <option value=' UNIT_ENTITY'>Unity Entity Property</option>
+          </select> */}
 
           {/* <Link to="/new-staff">
             <button className="userAddButton">Create</button>

@@ -3,10 +3,11 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "./usersType";
 const initialState = {
     loading: false,
     user: null,
-    error: ''
+    error: '',
+    isAuthenticated: false,
 }
 
-const userReducer = (state=initialState, action) =>{
+const userReducer = (state=initialState, action) => {
     switch (action.type) {
       case LOGIN_START:
         return {
@@ -16,7 +17,8 @@ const userReducer = (state=initialState, action) =>{
       case LOGIN_SUCCESS:
         return {
           ...state,
-          loading: true,
+          loading: false,
+          isAuthenticated: true,
           user: action.payload,
           error: "",
         };

@@ -24,7 +24,7 @@ export const getServiceProviderList = () => {
           type: GET_ALL_SERVICE_PROVIDER,
           payload: data,
         });
-        localStorage.getItem("token", data.token);
+        // localStorage.getItem("token", data.token);
           // console.log(data, '4444')
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ export function serviceProviderByEmail(email) {
              type: GET_SINGLE_SERVICE_PROVIDER,
              payload: data,
            });
-           // localStorage.getItem("token", data.token);
+          //  localStorage.getItem("token", data.token);
            //  console.log(data, '4444')
          })
          .catch((error) => {

@@ -13,20 +13,20 @@ export default function FeaturedInfo() {
 
   //get the total of all registered agents
   const agentList = useSelector((state) => state.agents);
-  const agent = agentList.allAgent.entities;
+  const agent = agentList?.allAgent?.entities;
 
   //get the total of all registered property Ower
   const propertyOwersReducer = useSelector((state) => state.propertyOwers);
-  const propertyOwersList = propertyOwersReducer.allPropertyOwers.entities;
+  const propertyOwersList = propertyOwersReducer?.allPropertyOwers?.entities;
   // const propertyower = propertyOwersList.length
 
   //get the total of all registered tenants
   const tenantReducer = useSelector((state) => state.tenants);
-  const tenantList = tenantReducer.allTenant.entities;
+  const tenantList = tenantReducer?.allTenant?.entities;
 
   //get the total of all registered service provider
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
-  const serProviderList = serviceProviderReducer.allServiceProviders.entities;
+  const serProviderList = serviceProviderReducer?.allServiceProviders?.entities;
 
   // console.log({ agentList, agent, agentLength }, "allagent");
   // console.log(agentLength, "agentLength");

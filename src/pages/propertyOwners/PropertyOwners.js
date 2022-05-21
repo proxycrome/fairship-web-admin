@@ -8,6 +8,7 @@ import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertyOwersList } from "../../redux/propertyOwers/propertyOwerActions";
+import {deleteSingleAgent} from '../../redux/agents/agentActions';
 import { CircularProgress } from "@material-ui/core";
 
 function PropertOwners() {
@@ -26,9 +27,9 @@ function PropertOwners() {
   }, [dispatch]);
 
   //! come back to this...
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
+  const handleDelete = (id) => {
+    dispatch(deleteSingleAgent(id))
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -85,7 +86,7 @@ function PropertOwners() {
             </Link>
             <DeleteOutline
               className="productListDelete"
-              // onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             />
           </>
         );

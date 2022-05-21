@@ -16,7 +16,7 @@ export const appointmentBookingList = () => {
           type: GET_ALL_BOOKINGS,
           payload: data,
         });
-        localStorage.getItem("token", data.token);
+        // localStorage.getItem("token", data.token);
         // console.log(data, 'dataBooking')
       })
       .catch((error) => {

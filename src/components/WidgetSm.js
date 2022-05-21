@@ -38,7 +38,7 @@ export default function WidgetSm() {
                 <span className="widgetSmUserTitle">{item.phone}</span>
               </div>
               <button className="widgetSmButton">
-                <Link to={"/property-owers/" + item.email}>
+                <Link to={`/agent/${item.email}`}>
                   <Visibility className="widgetSmIcon" />
                   Display
                 </Link>
@@ -53,7 +53,7 @@ export default function WidgetSm() {
 
   return (
     <div className="widgetSm">
-      <span className="widgetSmTitle">Property Owners </span>
+      <span className="widgetSmTitle">AGENTS</span>
       {!allAgent ? <CircularProgress /> : allAgent && allAgent}
       {itemsToShow === 4 ? (
         <button className="widgetSmButton" onClick={showMore}>

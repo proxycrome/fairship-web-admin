@@ -13,7 +13,7 @@ export const getTenantList = ()=>{
               type: GET_ALL_TENANT,
               payload: data,
             });
-            localStorage.setItem("token", data.token);
+            // localStorage.getItem("token", data.token);
             //   console.log(data, '4444')
           })
           .catch((error) => {
@@ -32,7 +32,7 @@ export function getTenantDetailsByEmail(email) {
           type: GET_SINGLE_TENANT,
           payload: data,
         });
-        localStorage.getItem("token", data.token);
+        // localStorage.getItem("token", data.token);
         //  console.log(data, '4444')
       })
       .catch((error) => {

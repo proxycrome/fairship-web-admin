@@ -1,7 +1,7 @@
 // import axios from "asxios";
 // import baseURL from "../../services";
 import authFetch from "../../authFetch";
-import { GET_ALL_AGENT, GET_SINGLE_AGENT } from "./agentType";
+import { GET_ALL_AGENT, GET_SINGLE_AGENT, DELETE_SINGLE_AGENT } from "./agentType";
 
 
 // export const getAgent = (token) => {
@@ -12,7 +12,7 @@ import { GET_ALL_AGENT, GET_SINGLE_AGENT } from "./agentType";
 // };
 
 //get all Agent list
-export const getAllAgent =(payload)=>{
+export const getAllAgent =()=>{
         return (dispatch) =>{
             authFetch
               .get("/auth/users/all?role=AGENT&limit=100")
@@ -23,7 +23,7 @@ export const getAllAgent =(payload)=>{
                   type: GET_ALL_AGENT,
                   payload: data,
                 });
-                // localStorage.setItem("token", data.token);
+                // localStorage.getItem("token", data.token);
                 // console.log(data, '4444')
               })
               .catch((error) => {
@@ -44,11 +44,33 @@ export function getAgentDetailByEmail(email) {
              type: GET_SINGLE_AGENT,
              payload: data,
            });
-            localStorage.getItem("token", data.token);
+            // localStorage.getItem("token", data.token);
           //  console.log(data, '4444')
          })
          .catch((error) => {
            console.log(error.message);
          });
      };
+}
+
+
+export function deleteSingleAgent(userId){
+  return  (dispatch) => {
+    console.log(userId)
+    authFetch
+          .delete(`/auth/admin/users/${userId}`)
+          .then((response) => {
+            // console.log(response, 'sunkanmi')
+            const data = response.data;
+            console.log(data, '123')
+            dispatch({
+              type: DELETE_SINGLE_AGENT,
+              payload: data,
+            });
+          })
+          .catch((error) => {
+            console.log(error)
+            console.log(error.response.data.message);
+          });
+  }
 }

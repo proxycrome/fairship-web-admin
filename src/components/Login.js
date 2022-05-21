@@ -9,7 +9,7 @@ const URL = "http://134.209.64.28:8084/login";
 
 function Login() {
   const user = useSelector((state) => state.users);
-  console.log(user, "999");
+  // console.log(user, "999");
   //use dispatch form redux
   const dispatch = useDispatch();
   //useNavigate
@@ -31,14 +31,21 @@ function Login() {
       };
     });
   };
+   
+ 
+  // console.log(user)
 
   //handle Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     //dispatch loginUser action
     dispatch(loginUser(email, password, platformType));
-    navigate("/home");
-
+      // if(user !== null){
+      //   navigate("/home");
+      // }
+      
+  
+    // navigate("/home");
     // dispatch(login({ email, password }));
 
     // const response = await axios.post(URL, {

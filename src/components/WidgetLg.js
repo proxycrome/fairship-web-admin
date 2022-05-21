@@ -1,65 +1,69 @@
 // import "./widgetLg.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
+import {getAllAdmin} from  '../redux/admins/adminActions';
 
 export default function WidgetLg() {
-  const Button = ({ type }) => {
-    return <button className={"widgetLgButton " + type}>{type}</button>;
+
+  const dispatch = useDispatch();
+
+  const [itemsToShow, setItemToShow] = useState(3);
+
+  // const Button = ({ type }) => {
+  //   return <button className={"widgetLgButton " + type}>{type}</button>;
+  // };
+  
+  const adminList = useSelector((state) => state.admin);
+  const admin = adminList.allAdmin.entities;
+  // const agentLength = agent.length;
+
+  const showMore = () => {
+    setItemToShow(admin.length);
   };
+  const showLess = () => {
+    setItemToShow(3);
+  };
+
+  useEffect(() => {
+    dispatch(getAllAdmin());
+  }, [dispatch]);
+
+
+  const allAdminPeople =
+  admin &&
+  admin.slice(0, itemsToShow).map((item) => {
+    return (
+      <>
+        <ul className="widgetSmList">
+          <li className="widgetSmListItem" key={item.id}>
+            <img src={item.profilePhoto} alt="" className="widgetSmImg" />
+            <div className="widgetLgUser">
+              <span className="widgetSmUsername">{item?.administrator?.fullName}</span>
+            </div>
+            <div className="widgetLgUser">  
+              <span className="widgetSmUserTitle">{item.phone}</span>
+            </div>
+          </li>
+        </ul>
+      </>
+    );
+  });
+
+  console.log(admin)
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">List of Staffs</h3>
-      <h4 className="review">This Page is under Review</h4>
-      {/* <table className="widgetLgTable">
-        <tr className="widgetLgTr">
-          <th className="widgetLgTh">Full Name</th>
-          <th className="widgetLgTh">email</th>
-          <th className="widgetLgTh">phone</th>
-          <th className="widgetLgTh">role</th>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-          
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Approved" />
-          </td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-           
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Declined" />
-          </td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-          
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Pending" />
-          </td>
-        </tr>
-        <tr className="widgetLgTr">
-          <td className="widgetLgUser">
-            
-            <span className="widgetLgName">Susan Carol</span>
-          </td>
-          <td className="widgetLgDate">2 Jun 2021</td>
-          <td className="widgetLgAmount">$122.00</td>
-          <td className="widgetLgStatus">
-            <Button type="Approved" />
-          </td>
-        </tr>
-      </table> */}
+      {!allAdminPeople ? <CircularProgress /> : allAdminPeople && allAdminPeople}
+      {itemsToShow === 3 ? (
+        <button className="widgetSmButton" onClick={showMore}>
+          Show more
+        </button>
+      ) : (
+        <button className="widgetSmButton" onClick={showLess}>
+          Show Less
+        </button>
+      )}
     </div>
   );
 }

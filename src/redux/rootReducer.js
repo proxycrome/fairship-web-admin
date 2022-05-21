@@ -5,9 +5,11 @@ import propertyReducer from "./property/propertyReducer";
 import propertyOwersReducer from "./propertyOwers/propertyOwerReducer";
 import serviceProviderReducer from "./serviceProviders/serviceProviderReducer";
 import tenantReducer from "./tenants/tenantReducer";
-import usersReducer from "./user/usersReducer"
+import usersReducer from "./user/usersReducer";
+import adminReducer from "./admins/adminReducer";
 
 const rootReducer = combineReducers({
+  admin: adminReducer,
   users: usersReducer,
   agents: agentReducer,
   tenants: tenantReducer,
@@ -17,4 +19,4 @@ const rootReducer = combineReducers({
   properties: propertyReducer
 });
 
-export default rootReducer
+export default rootReducer;

@@ -2,17 +2,25 @@ import { useEffect, useState } from "react";
 // import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link, Outlet } from "react-router-dom";
+import {Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAgent, deleteSingleAgent } from "../../redux/agents/agentActions";
-import { CircularProgress } from "@material-ui/core"
+import { getAllAdmin } from "../../redux/admins/adminActions";
+import {deleteSingleAgent} from '../../redux/agents/agentActions';
+import { CircularProgress } from "@material-ui/core";
+import {openAdminCategoryDialog} from '../../redux/admins/adminActions';
+import CreateStaffList from './CreateStaffList'
 
-export default function AgentList() {
+export default function StaffList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const agentList = useSelector((state) => state.agents);
-  const agent = agentList.allAgent.entities;
+   
+
+  const adminReducer = useSelector((state) => state.admin)
+  console.log(adminReducer)
+
+  const admin = adminReducer.allAdmin.entities
+  
 
   //console.log
   // console.log({ agentList, agent }, "allagent");
@@ -20,7 +28,7 @@ export default function AgentList() {
 
   //getAllAgent
   useEffect(() => {
-    dispatch(getAllAgent());
+    dispatch(getAllAdmin());
   }, [dispatch]);
 
   //! come back to it.....
@@ -38,11 +46,10 @@ export default function AgentList() {
       headerName: "Full Name",
       width: 200,
       renderCell: (params) => {
-        // console.log(params)
         return (
           <div className="userListUser">
             <img className="userListImg" src={params.row.profilePhoto} alt="" />
-            {params.row.lastName} {params.row.firstName}
+            {params.row?.administrator === null ? '' : params.row?.administrator?.fullName }
           </div>
         );
       },
@@ -54,20 +61,6 @@ export default function AgentList() {
     //   width: 200,
     // },
     {
-      field: "state",
-      headerName: "State",
-      width: 120,
-      renderCell: (params) => {
-        console.log(params)
-        return (
-          <div className="productListItem">
-            {/* <img className="productListImg" src={params.row.img} alt="" /> */}
-            {params.row.address?.state}
-          </div>
-        );
-      },
-    },
-    {
       field: "phone",
       headerName: "Phone",
       width: 160,
@@ -77,12 +70,11 @@ export default function AgentList() {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        console.log(params, 'sodiq')
         return (
           <>
-            <Link to={"/agent/" + params.row.email}>
+            {/* <Link to={"/agent/" + params.row.email}>
               <button className="userListEdit">View</button>
-            </Link>
+            </Link> */}
             <DeleteOutline
               className="userListDelete"
               onClick={() => handleDelete(params.row.id)}
@@ -98,18 +90,17 @@ export default function AgentList() {
   };
 
   //search
-  const searchAgent = agent?.filter((item) => {
+  const searchAdmin = admin?.filter((item) => {
     return (
       item.email.toLowerCase().includes(search.toLowerCase()) ||
-      item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-      item.lastName.toLowerCase().includes(search.toLowerCase())
+      item?.administrator?.fullName.toLowerCase().includes(search.toLowerCase())
     );
   });
 
   return (
     <div className="containerSide">
       <Sidebar />
-      <div className="userList">
+      <div className="productList">
         <div className="search">
           <div>
             <input
@@ -123,24 +114,26 @@ export default function AgentList() {
               Search
             </button> */}
           </div>
-
-          {/* <Link to="/new-staff">
-            <button className="userAddButton">Create</button>
-          </Link> */}
+          <button
+            className="userAddButton"
+            onClick={() => dispatch(openAdminCategoryDialog())}
+          >
+            Create Admin
+          </button>
         </div>
-        {!searchAgent ? (
+        {!searchAdmin ? (
           <CircularProgress />
         ) : (
           <DataGrid
-            rows={searchAgent && searchAgent}
+            rows={searchAdmin && searchAdmin}
             disableSelectionOnClick
             columns={columns}
             pageSize={10}
             checkboxSelection
           />
         )}
-
-        <Outlet />
+       <CreateStaffList/>
+        {/* <Outlet /> */}
       </div>
     </div>
   );

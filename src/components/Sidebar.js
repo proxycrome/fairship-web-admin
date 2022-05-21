@@ -24,6 +24,11 @@ export default function Sidebar() {
     };
   };
 
+  const handleLogOut = () => {
+    window.localStorage.clear()
+    window.location.href= '/'
+  }
+
   return (
     <nav className="sidebar">
       <div className="sidebarWrapper">
@@ -145,7 +150,7 @@ export default function Sidebar() {
               <Timeline className="sidebarIcon" />
               Analytics
             </li> */}
-            <li className="sidebarListItem">
+            <li className="sidebarListItem" onClick={handleLogOut}>
               <Report className="sidebarIcon" />
               Logout
             </li>

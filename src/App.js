@@ -1,5 +1,6 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
+import { useSelector } from "react-redux";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import AgentList from "./pages/agents/AgentList";
@@ -15,15 +16,19 @@ import SinglePropertyOwner from "./pages/propertyOwners/SinglePropertyOwner";
 import SingleServiceProvider from "./pages/service-provider/SingleSerProvider";
 import PropertyList from "./pages/property/PropertyList";
 import SingleProperty from "./pages/property/SingleProperty";
-// import StaffList from "./pages/staffs/staffsList/StaffList";
+import StaffList from "./pages/staffs/StaffList";
 // import CreateStaff from "./pages/staffs/newStaff/CreateStaff";
 import SerTypeList from "./pages/service-provider/serviceCategory/SerTypeList";
 import SerCategoryList from "./pages/service-provider/serviceCategory/SerCategoryList";
 
+
 function App() {
+
+ 
   return (
     <>
       <Topbar />
+
 
       <Routes>
         <Route path="/" element={<Login />} />
@@ -48,7 +53,7 @@ function App() {
         <Route path="/all-bookings" element={<AllBookings />} />
         <Route path="property-list" element={<PropertyList />} />
         <Route path="/property-list/:id" element={<SingleProperty />} />
-        {/* <Route path="/staff-list" element={<StaffList />} /> */}
+        <Route path="/staff-list" element={<StaffList />} />
         {/* <Route path="/new-staff" element={<CreateStaff />} /> */}
 
         {/* <Route path="/newproduct" element={<NewProduct />} /> */}

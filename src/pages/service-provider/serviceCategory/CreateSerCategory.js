@@ -23,6 +23,8 @@ function CreateSerCategory() {
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.createServiceCategory;
 
+  console.log()
+
   // console.log({ serviceProviderReducer }, "servicecategory");
 
   const handleChange = (e) => {

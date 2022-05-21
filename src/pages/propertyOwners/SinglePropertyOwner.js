@@ -25,7 +25,7 @@ function SinglePropertyOwner() {
 
   useEffect(() => {
     dispatch(singleOwerDetailsByEmail(params.email));
-  }, [params]);
+  }, [params.email]);
 
   return (
     <div className="containerSide">

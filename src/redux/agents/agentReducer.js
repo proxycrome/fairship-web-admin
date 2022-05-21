@@ -1,4 +1,4 @@
-import { GET_ALL_AGENT, GET_SINGLE_AGENT } from "./agentType";
+import { GET_ALL_AGENT, GET_SINGLE_AGENT, DELETE_SINGLE_AGENT } from "./agentType";
 
 const initialState = {
   allAgent: {
@@ -9,6 +9,7 @@ const initialState = {
   },
   loading: false,
   agent: "",
+  agentDelete: ''
 };
 const agentReducer = (state=initialState, action) =>{
         switch (action.type) {
@@ -24,6 +25,12 @@ const agentReducer = (state=initialState, action) =>{
               loading: false,
               agent: action.payload,
             };
+        case DELETE_SINGLE_AGENT: 
+            return {
+              ...state,
+              loading: false,
+              agentDelete: action.payload 
+        }    
         default:
             return state;
         }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const accessToken =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlLnYuZXplb253dWthQGdtYWlsLmNvbSIsInNjb3BlcyI6IlBST1BFUlRZX09XTkVSIiwiaWF0IjoxNjQ4NTY2ODE4LCJleHAiOjE2NTM3NTA4MTh9.bkhNPQHrPrwHsU19jWobe-UNHZCxSgF6LdTSm7kjSNo";
+// const accessToken =
+//   "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlLnYuZXplb253dWthQGdtYWlsLmNvbSIsInNjb3BlcyI6IlBST1BFUlRZX09XTkVSIiwiaWF0IjoxNjQ4NTY2ODE4LCJleHAiOjE2NTM3NTA4MTh9.bkhNPQHrPrwHsU19jWobe-UNHZCxSgF6LdTSm7kjSNo";
 // const token = localStorage.getItem("token");
 
 // Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlLnYuZXplb253dWthQGdtYWlsLmNvbSIsInNjb3BlcyI6IlBST1BFUlRZX09XTkVSIiwiaWF0IjoxNjQ4NTY2ODE4LCJleHAiOjE2NTM3NTA4MTh9.bkhNPQHrPrwHsU19jWobe-UNHZCxSgF6LdTSm7kjSNo
@@ -15,10 +15,10 @@ const accessToken =
     (config) => {
       // console.log(config, "got response");
       const token = localStorage.getItem("token");
-      // if(token){
-      // config.headers.authorization = `Bearer ${token}`;
-      // }
-      config.headers.authorization = `Bearer ${accessToken}`;
+      if(token){
+      config.headers.authorization = `Bearer ${token}`;
+      }
+      // config.headers.authorization = `Bearer ${accessToken}`;
       return config;
     },
     (error) => {

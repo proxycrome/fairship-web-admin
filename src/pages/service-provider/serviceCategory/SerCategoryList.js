@@ -16,6 +16,7 @@ function SerCategoryList() {
   const dispatch = useDispatch();
 
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
+  console.log(serviceProviderReducer)
   const serCategory = serviceProviderReducer.serviceCategories;
 
   // console.log({ serviceProviderReducer, serCategory}, "service999");

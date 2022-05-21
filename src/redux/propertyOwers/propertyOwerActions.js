@@ -13,7 +13,7 @@ export const getPropertyOwersList = () => {
           type: GET_ALL_PROPERTYOWERS,
           payload: data,
         });
-        // localStorage.setItem("token", data.token);
+        // localStorage.getItem("token", data.token);
           // console.log(data, 'propertyData')
       })
       .catch((error) => {
@@ -35,7 +35,7 @@ export function singleOwerDetailsByEmail(email) {
              type: GET_SINGLE_PROPERTYOWER,
              payload: data,
            });
-            localStorage.getItem("token", data.token);
+            // localStorage.getItem("token", data.token);
           //  console.log(data, '4444')
          })
          .catch((error) => {

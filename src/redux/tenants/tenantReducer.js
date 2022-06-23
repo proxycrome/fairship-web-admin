@@ -1,4 +1,4 @@
-import  { GET_ALL_TENANT, GET_SINGLE_TENANT} from "./tenantType"
+import  { GET_ALL_TENANT, GET_SINGLE_TENANT, GET_TENANT_PROPERTY} from "./tenantType"
 
 
 //declare initialState
@@ -26,6 +26,12 @@ const tenantReducer = (state = initialState, action) => {
             ...state,
             loading: false,
             tenant: action.payload,
+        };
+        case GET_TENANT_PROPERTY:
+          return {
+            ...state,
+            loading: false,
+            property: action.payload,
         };
         default:
         return state;

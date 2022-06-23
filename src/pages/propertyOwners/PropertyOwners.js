@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getPropertyOwersList } from "../../redux/propertyOwers/propertyOwerActions";
+import { getPropertyOwersList, deleteSingleOwner } from "../../redux/propertyOwers/propertyOwerActions";
 import {deleteSingleAgent} from '../../redux/agents/agentActions';
 import { CircularProgress } from "@material-ui/core";
 
@@ -28,7 +28,8 @@ function PropertOwners() {
 
   //! come back to this...
   const handleDelete = (id) => {
-    dispatch(deleteSingleAgent(id))
+    dispatch(deleteSingleOwner(id))
+    dispatch(getPropertyOwersList());
   };
 
   const columns = [

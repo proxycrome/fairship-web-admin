@@ -25,8 +25,9 @@ export default function AgentList() {
 
   //! come back to it.....
   const handleDelete = (id) => {
-    console.log(id)
+    // console.log(id)
     dispatch(deleteSingleAgent(id))
+    dispatch(getAllAgent());
   };
 
   
@@ -58,7 +59,7 @@ export default function AgentList() {
       headerName: "State",
       width: 120,
       renderCell: (params) => {
-        console.log(params)
+        // console.log(params)
         return (
           <div className="productListItem">
             {/* <img className="productListImg" src={params.row.img} alt="" /> */}
@@ -77,7 +78,7 @@ export default function AgentList() {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        console.log(params, 'sodiq')
+        // console.log(params, 'sodiq')
         return (
           <>
             <Link to={"/agent/" + params.row.email}>

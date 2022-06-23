@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
-import { getServiceProviderList } from "../../redux/serviceProviders/serviceProviderActions";
+import { getServiceProviderList, deleteServiceProvider } from "../../redux/serviceProviders/serviceProviderActions";
 
 
 function ServiceProviderList() {
@@ -25,10 +25,12 @@ function ServiceProviderList() {
 
   console.log(serProviderList)
 
-  //!come back to this...
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
+  // !come back to this...
+  const handleDelete = (id) => {
+    // setData(data.filter((item) => item.id !== id));
+    dispatch(deleteServiceProvider(id))
+    dispatch(getServiceProviderList());
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -85,7 +87,7 @@ function ServiceProviderList() {
             </Link>
             <DeleteOutline
               className="productListDelete"
-              // onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             />
           </>
         );
@@ -124,9 +126,9 @@ function ServiceProviderList() {
             <Link to="/ser-type-list">
               <button className="userAddButton">Service Type</button>
             </Link>
-            <Link to="/ser-category-List">
+            {/* <Link to="/ser-category-List">
               <button className="userAddButton">Service Category</button>
-            </Link>
+            </Link> */}
           </div>
         </div>
         {!searchSerProvider ? (

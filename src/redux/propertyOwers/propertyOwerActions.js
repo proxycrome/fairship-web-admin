@@ -1,5 +1,5 @@
 import authFetch from "../../authFetch";
-import { GET_SINGLE_PROPERTYOWER, GET_ALL_PROPERTYOWERS } from "./propertyOwerType";
+import { GET_SINGLE_PROPERTYOWER, GET_ALL_PROPERTYOWERS, DELETE_SINGLE_PROPERTYOWER } from "./propertyOwerType";
 
 //get property owers List api call
 export const getPropertyOwersList = () => {
@@ -42,4 +42,25 @@ export function singleOwerDetailsByEmail(email) {
            console.log(error.message);
          });
      };
+}
+
+export function deleteSingleOwner(userId){
+  return  (dispatch) => {
+    // console.log(userId)
+    authFetch
+          .delete(`/auth/admin/users/${userId}`)
+          .then((response) => {
+            // console.log(response, 'sunkanmi')
+            const data = response.data;
+            // console.log(data, '123')
+            dispatch({
+              type: DELETE_SINGLE_PROPERTYOWER,
+              payload: data,
+            });
+          })
+          .catch((error) => {
+            console.log(error)
+            console.log(error.response.data.message);
+          });
+  }
 }

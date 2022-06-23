@@ -35,10 +35,10 @@ function SingleSerProvider() {
   }, [singleservice]);
 
   
-  const approveSerProvider =()=>{
-    const { action, comments, serviceProviderId } = formValue;
+  const approveSerProvider =(act)=>{
+    const {comments, serviceProviderId } = formValue;
+    const action = act
     dispatch(serviceProviderApproved(action, comments, serviceProviderId));
-    console.log(formValue, "value");
 
 
   }
@@ -88,18 +88,22 @@ function SingleSerProvider() {
                   {singleservice.serviceProviderDetail?.registrationStatus}
                 </span>
                 <span className="userShowInfoTitle">
-                  {singleservice.serviceProviderDetail?.registrationStatus ===
-                  "NOT_STARTED" ? (
-                    <small className="statusText">
-                      Complete your registration
-                    </small>
-                  ) : (
-                    <button
+                  {singleservice.serviceProviderDetail?.registrationStatus !==
+                  "PENDING_VERIFICATION" ? null : (
+                    <>
+                      <button
                       className="userAddButton"
-                      onClick={approveSerProvider}
+                      onClick={() => approveSerProvider('APPROVED')}
                     >
-                      Approved
+                      Approve
                     </button>
+                    {/* <button
+                    className="userAddButton"
+                    onClick={() => approveSerProvider('REJECTED')}
+                  >
+                    Reject
+                  </button> */}
+                    </>
                   )}
                 </span>
               </div>

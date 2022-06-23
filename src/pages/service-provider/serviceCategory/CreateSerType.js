@@ -19,6 +19,7 @@ import {
   closeServiceTypeDialog,
   getServiceProviderList,
   serviceCategories,
+  addSerType,
 } from "../../../redux/serviceProviders/serviceProviderActions";
 
 // const defaultState = {
@@ -104,7 +105,9 @@ console.log(formValue, '5689');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValue);
+    
+    dispatch(addSerType(formValue));
+    // console.log(formValue);
   };
 
   function closeComposeDialog() {
@@ -145,7 +148,7 @@ console.log(formValue, '5689');
             value={formValue.serviceCategory.name}
             onChange={handleChangeServiceType}
           /> */}
-          <InputLabel id="demo-simple-select-label">
+          {/* <InputLabel id="demo-simple-select-label">
             Service Category
           </InputLabel>
           <Select
@@ -169,10 +172,7 @@ console.log(formValue, '5689');
                   </MenuItem>
                 );
               })}
-            {/* <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem> */}
-          </Select>
+          </Select> */}
           <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <Select
             labelId="demo-simple-select-label"

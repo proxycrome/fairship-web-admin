@@ -62,7 +62,7 @@ export function deleteSingleAgent(userId){
           .then((response) => {
             // console.log(response, 'sunkanmi')
             const data = response.data;
-            console.log(data, '123')
+            // console.log(data, '123')
             dispatch({
               type: DELETE_SINGLE_AGENT,
               payload: data,

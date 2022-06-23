@@ -1,11 +1,13 @@
 import {
   GET_ALL_SERVICE_PROVIDER,
   GET_SINGLE_SERVICE_PROVIDER,
+  DELETE_SINGLE_SERVICE_PROVIDER,
   GET_ALL_SERVICE_TYPE,
   GET_SERVICE_CATEGORY,
   OPEN_DIALOG_SERVICE_TYPE,
   CLOSE_DIALOG_SERVICE_TYPE,
   ADD_SERVICE_CATEGORY,
+  ADD_SERVICE_TYPE,
   OPEN_DIALOG_SERVICE_CATEGORY,
   CLOSE_DIALOG_SERVICE_CATEGORY,
   APPROVED_SERVICE_PROVIDER,
@@ -68,6 +70,12 @@ const serviceProviderReducer = (state = initialState, action) => {
           ...state,
           addSerCategory: action.payload
         }
+        //add service category
+      // case ADD_SERVICE_TYPE:
+      //   return{
+      //     ...state,
+      //     addSerCategory: action.payload
+      //   }
     //open dialog service type
     case OPEN_DIALOG_SERVICE_TYPE:
       return {

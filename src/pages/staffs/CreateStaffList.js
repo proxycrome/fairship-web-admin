@@ -92,7 +92,7 @@ function CreateStaffList() {
             // autoFocus
             margin="dense"
             id="type-name3"
-            label="Password at least Eight letters "
+            label="Password Must be at least Eight letters "
             type="text"
             fullWidth
             variant="standard"

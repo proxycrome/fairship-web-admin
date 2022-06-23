@@ -2,11 +2,13 @@ import authFetch from "../../authFetch";
 import {
   GET_ALL_SERVICE_PROVIDER,
   GET_SINGLE_SERVICE_PROVIDER,
+  DELETE_SINGLE_SERVICE_PROVIDER,
   GET_ALL_SERVICE_TYPE,
   GET_SERVICE_CATEGORY,
   OPEN_DIALOG_SERVICE_TYPE,
   CLOSE_DIALOG_SERVICE_TYPE,
   ADD_SERVICE_CATEGORY,
+  ADD_SERVICE_TYPE,
   OPEN_DIALOG_SERVICE_CATEGORY,
   CLOSE_DIALOG_SERVICE_CATEGORY,
   APPROVED_SERVICE_PROVIDER
@@ -52,6 +54,27 @@ export function serviceProviderByEmail(email) {
            console.log(error.message);
          });
      };
+}
+
+export function deleteServiceProvider(userId){
+  return  (dispatch) => {
+    // console.log(userId)
+    authFetch
+          .delete(`/auth/admin/users/${userId}`)
+          .then((response) => {
+            // console.log(response, 'sunkanmi')
+            const data = response.data;
+            console.log(data, '123')
+            dispatch({
+              type: DELETE_SINGLE_SERVICE_PROVIDER,
+              payload: data,
+            });
+          })
+          .catch((error) => {
+            console.log(error)
+            console.log(error.response.data.message);
+          });
+  }
 }
 
 
@@ -101,8 +124,37 @@ export function addSerCategory(id,name) {
   };
 }
 
+//add service type
+export function addSerType(data) {
+  return (dispatch) => {
+    authFetch
+      .post("/auth/admin/services", data)
+      .then((response) => {
+        console.log(response, "addservice");
+        const resp = response.data;
+        dispatch({
+          type: ADD_SERVICE_CATEGORY,
+          payload: data,
+        });
+        window.location.reload();
+        // localStorage.getItem("token", data.token);
+        // console.log(resp, "222");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
 //approve service provider
  export function serviceProviderApproved(action, comments, serviceProviderId) {
+  const sp ={
+    action,
+    comments,
+    serviceProviderId,
+  }
+
+  console.log(sp)
    return (dispatch) => {
      authFetch
        .put("/auth/admin/review-pending-sp-registration", {
@@ -111,15 +163,14 @@ export function addSerCategory(id,name) {
          serviceProviderId,
        })
        .then((response) => {
-        //  console.log(response, "APPROVED");
+         console.log(response, "APPROVED");
          const data = response.data;
          dispatch({
            type: APPROVED_SERVICE_PROVIDER,
            payload: data,
          });
-        window.location.reload();
+        // window.location.reload();
 
-        //  console.log(data, "APPROVED");
        })
        .catch((error) => {
          console.log(error.message);

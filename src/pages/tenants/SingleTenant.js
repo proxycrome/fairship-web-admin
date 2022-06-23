@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getTenantDetailsByEmail } from "../../redux/tenants/tenantActions";
+import { getTenantDetailsByEmail, getTenantProperty } from "../../redux/tenants/tenantActions";
 
 
 export default function SingleTenant() {
@@ -13,11 +13,15 @@ export default function SingleTenant() {
   const allTenants = useSelector((state) => state.tenants);
   const singleTenant = allTenants.tenant;
 
-  // console.log(singleTenant, "tenant");
+  console.log(singleTenant, "tenant");
 
   useEffect(() => {
     dispatch(getTenantDetailsByEmail(params.email));
   }, [params]);
+
+  useEffect(() => {
+    dispatch(getTenantProperty(singleTenant.id));
+  }, []);
 
   return (
     <div className="containerSide">

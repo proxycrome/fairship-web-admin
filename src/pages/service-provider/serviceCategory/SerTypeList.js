@@ -69,8 +69,8 @@ function SerTypeList() {
   //search
   const searchSerType = serTypeList?.filter((item) => {
     return (
-      item.name.toLowerCase().includes(search.toLowerCase()) ||
-      item.status.toLowerCase().includes(search.toLowerCase())
+      item.name.toLowerCase().includes(search.toLowerCase())
+      // item.status.toLowerCase().includes(search.toLowerCase())
     );
   });
 

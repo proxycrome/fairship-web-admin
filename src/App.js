@@ -28,8 +28,6 @@ function App() {
   return (
     <>
       <Topbar />
-
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
@@ -38,7 +36,7 @@ function App() {
         {/* <Route path="newUser" element={<NewUser />} /> */}
         <Route path="tenants" element={<TenantList />} />
         <Route path="/tenants/:email" element={<SingleTenant />} />
-        <Route path="/property-owers" element={<PropertyOwers />} />
+        <Route path="property-owers" element={<PropertyOwers />} />
         <Route path="/property-owers/:email" element={<SinglePropertyOwner />} />
         <Route
           path="/service-provider-list"

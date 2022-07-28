@@ -22,7 +22,7 @@ export default function Agent() {
 
   const allAgents = useSelector((state) => state.agents);
   const singleAgent = allAgents.agent;
-  // console.log(singleAgent, 'singleAgent')
+  console.log({singleAgent,allAgents}, 'singleAgent')
 
   useEffect(() => {
     dispatch(getAgentDetailByEmail(params.email));
@@ -113,13 +113,36 @@ export default function Agent() {
                 {singleAgent.address?.state}
               </span>
             </div>
-            <span className="userShowTitle">Other info </span>
-            {/* <div className="userShowInfo">
-              <span className="userShowIcon">serviceProviderDetail:</span>
+            {/* //!other info */}
+            {/* <span className="userShowTitle">Other info </span> */}
+            <span className="userShowTitle">Properties</span>
+            <div className="userShowInfo">
               <span className="userShowInfoTitle">
-                {singleAgent.serviceProviderDetail}
+                <table className="widgetLgTable">
+                  <tr className="widgetLgTr">
+                    <th className="widgetLgTh">Title</th>
+                    <th className="widgetLgTh">PropertyRef</th>
+                    <th className="widgetLgTh">Entity Level</th>
+                    <th className="widgetLgTh">Type</th>
+                  </tr>
+                  {singleAgent.properties?.map((itm) => {
+                    return (
+                      <tr className="widgetLgTr" key={itm.id}>
+                        <td className="widgetLgName">{itm.title}</td>
+                        <td className="widgetLgName">{itm.propertyRef}</td>
+                        <td className="widgetLgDate">{itm.entityLevel}</td>
+                        <td className="widgetLgAmount">{itm.type}</td>
+                        <td className="widgetLgUser">
+                          <Link to={`/property-list/${itm.id}`}>
+                            <h5>View</h5>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </table>
               </span>
-            </div> */}
+            </div>
             <div className="userShowInfo">
               {/* <LocationSearching className="userShowIcon" /> */}
               <div className="userShowIcon">signature:</div>

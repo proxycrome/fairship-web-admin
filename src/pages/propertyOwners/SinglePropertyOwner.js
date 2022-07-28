@@ -19,7 +19,7 @@ function SinglePropertyOwner() {
   const allPropertyOwers = useSelector((state) => state.propertyOwers);
   const singlePropertOwer = allPropertyOwers.propertyOwer;
 
-  console.lo(singlePropertOwer, "singlePropertOwer");
+  console.log(singlePropertOwer, "singlePropertOwer");
 
   console.log({allPropertyOwers,singlePropertOwer}, "propertyOwers");
 
@@ -114,13 +114,38 @@ function SinglePropertyOwner() {
                 {singlePropertOwer.address?.state}
               </span>
             </div>
-            <span className="userShowTitle">Other info </span>
+            {/* <span className="userShowTitle">Other info </span> */}
+           
+
+            <span className="userShowTitle">Properties</span>
             <div className="userShowInfo">
-              <span className="userShowIcon">serviceProviderDetail:</span>
               <span className="userShowInfoTitle">
-                {singlePropertOwer.serviceProviderDetail}
+                <table className="widgetLgTable">
+                  <tr className="widgetLgTr">
+                    <th className="widgetLgTh">Title</th>
+                    <th className="widgetLgTh">PropertyRef</th>
+                    <th className="widgetLgTh">Entity Level</th>
+                    <th className="widgetLgTh">Type</th>
+                  </tr>
+                  {singlePropertOwer.properties?.map((itm) => {
+                    return (
+                      <tr className="widgetLgTr" key={itm.id}>
+                        <td className="widgetLgName">{itm.title}</td>
+                        <td className="widgetLgName">{itm.propertyRef}</td>
+                        <td className="widgetLgDate">{itm.entityLevel}</td>
+                        <td className="widgetLgAmount">{itm.type}</td>
+                        <td className="widgetLgUser">
+                          <Link to={`/property-list/${itm.id}`}>
+                            <h5>View</h5>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </table>
               </span>
             </div>
+
             <div className="userShowInfo">
               <div className="userShowIcon">signature:</div>
               <br />

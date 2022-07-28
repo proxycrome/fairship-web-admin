@@ -10,11 +10,11 @@ export const getPropertyList = () => {
   return (dispatch) => {
     authFetch
       // .get(`/auth/properties?entityLevel=${property}&limit=100`)
-      .get('/auth/admin/properties')
+      .get("/auth/admin/properties?limit=1000")
       .then((response) => {
         // console.log(response, "property");
         const data = response.data;
-        console.log(data)
+        console.log(data);
         dispatch({
           type: GET_ALL_PROPERTIES,
           payload: data,

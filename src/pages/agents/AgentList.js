@@ -15,7 +15,7 @@ export default function AgentList() {
   const agent = agentList.allAgent.entities;
 
   //console.log
-  // console.log({ agentList, agent }, "allagent");
+  console.log({ agentList, agent }, "allagent");
   // console.log(agent, 'data')
 
   //getAllAgent
@@ -81,13 +81,19 @@ export default function AgentList() {
         // console.log(params, 'sodiq')
         return (
           <>
-            <Link to={"/agent/" + params.row.email}>
-              <button className="userListEdit">View</button>
-            </Link>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            <div className="actionBtn">
+              <div className="actionBtn2">
+              <Link to={"/agent/" + params.row.email}>
+                <button className="userListEdit">View</button>
+              </Link>
+              </div>
+               <div className="actionBtn2">
+              <DeleteOutline
+                className="userListDelete"
+                onClick={() => handleDelete(params.row.id)}
+              />
+              </div>
+            </div>
           </>
         );
       },

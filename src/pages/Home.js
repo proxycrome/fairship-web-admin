@@ -6,6 +6,8 @@ import WidgetSm from "../components/WidgetSm";
 import WidgetLg from "../components/WidgetLg";
 import Sidebar from "../components/Sidebar";
 import Chart from "../components/Chart";
+import SerProApprovalReq from "../components/SerProApprovalReq";
+import PropertyApprovalReq from "../components/PropertyApprovalReq";
 
 export default function Home() {
   return (
@@ -22,7 +24,9 @@ export default function Home() {
           />
           <div className="homeWidgets">
             <WidgetSm />
-            <WidgetLg />
+            {/* <WidgetLg /> */}
+            <PropertyApprovalReq />
+            <SerProApprovalReq />
           </div>
         </div>
       </div>

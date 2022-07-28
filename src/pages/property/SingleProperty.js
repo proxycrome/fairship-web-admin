@@ -15,6 +15,7 @@ import { singlePropertyById ,propertyapproval} from "../../redux/property/proper
 function SingleProperty() {
   const dispatch = useDispatch();
   const params = useParams();
+  console.log(params, 'proParams')
 
   const propertyList = useSelector((state) => state.properties);
   const singleProperty = propertyList.viewProperty;
@@ -129,36 +130,48 @@ function SingleProperty() {
             <div className="userShowInfo">
               <span className="userShowIcon">rented By:</span>
               <span className="userShowInfoTitle">
-                {singleProperty.rentedBy}
+                {singleProperty?.rentedBy?.firstName}
+              </span>
+              <span className="userShowInfoTitle">
+                {singleProperty?.rentedBy?.lastName}
               </span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">Status:</span>
-              <span className="userShowInfoTitle">{singleProperty.status}</span>
+              <span className="userShowInfoTitle">
+                {singleProperty?.status}
+              </span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">Title:</span>
-              <span className="userShowInfoTitle">{singleProperty.title}</span>
+              <span className="userShowInfoTitle">{singleProperty?.title}</span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">Type:</span>
-              <span className="userShowInfoTitle">{singleProperty.type}</span>
+              <span className="userShowInfoTitle">{singleProperty?.type}</span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">Size:</span>
-              <span className="userShowInfoTitle">{singleProperty.size}</span>
+              <span className="userShowInfoTitle">{singleProperty?.size}</span>
             </div>
 
             <div className="userShowInfo">
               <div className="userShowIcon">Unit No:</div>
-              <span className="userShowInfoTitle">{singleProperty.unitNo}</span>
+              <span className="userShowInfoTitle">
+                {singleProperty?.unitNo}
+              </span>
             </div>
 
-            {singleProperty.status !== 'ACTIVE' ?
-            <button className="userListEdit" onClick={propertyapprove(params.id)}>UnApproved</button> 
-            :
-            <button className="userListEdit">Approved</button> 
-            }
+            {singleProperty?.status !== "ACTIVE" ? (
+              <button
+                className="userListEdit"
+                onClick={propertyapprove(params.id)}
+              >
+                UnApproved
+              </button>
+            ) : (
+              <button className="userListEdit">Approved</button>
+            )}
           </div>
         </div>
       </div>

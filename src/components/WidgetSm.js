@@ -32,17 +32,17 @@ export default function WidgetSm() {
         <>
           <ul className="widgetSmList">
             <li className="widgetSmListItem" key={item.id}>
-              <img src={item.profilePhoto} alt="" className="widgetSmImg" />
+              {/* <img src={item.profilePhoto} alt="" className="widgetSmImg" /> */}
               <div className="widgetSmUser">
                 <span className="widgetSmUsername">{`${item.firstName} ${item.lastName}`}</span>
                 <span className="widgetSmUserTitle">{item.phone}</span>
               </div>
-              <button className="widgetSmButton">
+              {/* <button className="widgetSmButton">
                 <Link to={`/agent/${item.email}`}>
                   <Visibility className="widgetSmIcon" />
                   Display
                 </Link>
-              </button>
+              </button> */}
             </li>
           </ul>
         </>

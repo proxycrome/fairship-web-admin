@@ -22,16 +22,6 @@ import {
   addSerType,
 } from "../../../redux/serviceProviders/serviceProviderActions";
 
-// const defaultState = {
-//   createdBy: "",
-//   id: 0,
-//   name: "",
-//   serviceCategory: {
-//     id: 0,
-//     name: "",
-//   },
-//   status: ""
-// }
 
 function CreateSerType() {
   const [formValue, setFormValue] = useState({
@@ -42,7 +32,7 @@ function CreateSerType() {
       id: 0,
       name: "",
     },
-    status: "",
+    status: "ACTIVE",
   });
 
 
@@ -52,32 +42,6 @@ function CreateSerType() {
   );
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.serviceCategories;
-
-  // console.log({ serviceProviderReducer, serCategory }, "service234");
-
-// useEffect(() => {
-  
-    // const newSerId = serCategory && serCategory.find(i => i.id === serCategory.id)
-    // console.log(newSerId, '700')
-      // setFormValue({
-      //   ...formValue,
-      //   serviceCategory:{
-      //     id : newSerId?.id
-      //   } 
-      // })
-   
-// }, [serCategory]);
-// useEffect(() => {
-//   if (serCategory) {
-//     const newSerId =  serCategory.find(i => i.id === serCategory.id)
-//     setFormValue({
-//       ...formValue,
-//       serviceCategory: {
-//         id: newSerId.id,
-//       },
-//     });
-//   }
-// }, [serCategory]);
 
 console.log(formValue, '5689');
 
@@ -136,44 +100,8 @@ console.log(formValue, '5689');
             value={formValue.name}
             onChange={handleChange}
           />
-          {/* <TextField
-            // autoFocus
-            margin="dense"
-            id="category-name"
-            label="Service Category Name"
-            type="text"
-            fullWidth
-            variant="standard"
-            name="name"
-            value={formValue.serviceCategory.name}
-            onChange={handleChangeServiceType}
-          /> */}
-          {/* <InputLabel id="demo-simple-select-label">
-            Service Category
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            margin="dense"
-            fullWidth
-            value={formValue.serviceCategory.name}
-            name="name"
-            label="data"
-            onChange={handleChangeServiceType}
-          >
-            {serCategory &&
-              serCategory?.map((item) => {
-                return (
-                  //   <option key={item.id} value={item.id}>
-                  //   {item.name}
-                  // </option>
-                  <MenuItem key={item.id} value={item.name}>
-                    {item.name}
-                  </MenuItem>
-                );
-              })}
-          </Select> */}
-          <InputLabel id="demo-simple-select-label">Status</InputLabel>
+         
+          {/* <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -194,7 +122,7 @@ console.log(formValue, '5689');
                 </MenuItem>
               );
             })}
-          </Select>
+          </Select> */}
         </DialogContent>
         <DialogActions>
           <Button type="submit">Create</Button>

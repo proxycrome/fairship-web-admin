@@ -13,7 +13,7 @@ export default function SingleTenant() {
   const allTenants = useSelector((state) => state.tenants);
   const singleTenant = allTenants.tenant;
 
-  console.log(singleTenant, "tenant");
+  console.log(singleTenant, "tenant400");
 
   useEffect(() => {
     dispatch(getTenantDetailsByEmail(params.email));

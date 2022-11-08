@@ -6,9 +6,11 @@ import axios from "axios";
 
 // Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlLnYuZXplb253dWthQGdtYWlsLmNvbSIsInNjb3BlcyI6IlBST1BFUlRZX09XTkVSIiwiaWF0IjoxNjQ4NTY2ODE4LCJleHAiOjE2NTM3NTA4MTh9.bkhNPQHrPrwHsU19jWobe-UNHZCxSgF6LdTSm7kjSNo
 
+let headers = {}
   const authFetch = axios.create({
     baseURL: "http://134.209.64.28:8084",
     // baseURL: "http://admin.pmanager.online/",
+    headers
   }); 
 
   authFetch.interceptors.request.use(
@@ -18,11 +20,12 @@ import axios from "axios";
       if(token){
       config.headers.authorization = `Bearer ${token}`;
       }
+      console.log(token, 'token234')
       // config.headers.authorization = `Bearer ${accessToken}`;
       return config;
     },
     (error) => {
-      return Promise.reqject(error);
+      return Promise.reject(error);
     }
 )
 

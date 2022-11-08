@@ -14,28 +14,23 @@ import { getPropertyList, propertyapproval } from "../../redux/property/property
 export default function PropertyList() {
   const [search, setSearch] = useState("");
   // const [property, setProperty] = useState('COLLECTIVE_ENTITY');
-  const [stat, setStat] = useState(false)
+  const [stat, setStat] = useState(false);
   const dispatch = useDispatch();
   const propertyList = useSelector((state) => state.properties);
   const properties = propertyList.allProperties.entities;
 
-  
   // console.log({ propertyList, properties }, "propertyList");
 
   //getAllAgent
   useEffect(() => {
-    
-    dispatch(getPropertyList())
+    dispatch(getPropertyList());
     // console.log(property)
-    
- }, [dispatch]);
+  }, [dispatch]);
 
-
-
-//  const propertyapprove = (id) => {
-//    dispatch(propertyapproval(id))
-//    setStat(true)
-//  }
+  //  const propertyapprove = (id) => {
+  //    dispatch(propertyapproval(id))
+  //    setStat(true)
+  //  }
 
   //! come back to it.....
   // const handleDelete = (id) => {
@@ -62,6 +57,12 @@ export default function PropertyList() {
       field: "status",
       headerName: "Status",
       width: 120,
+      renderCell: (params)=>{
+        return(params?.row?.status === 'ACTIVE'?"APPROVED": "UNAPPROVED")
+        // return(
+        //   {params.row.status === 'ACTIVE'?"APPROVED": "UNAPPROVED"}
+        // )
+      }
     },
     {
       field: "indexImage",
@@ -90,32 +91,33 @@ export default function PropertyList() {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        console.log(params)
+        // console.log(params, 'view');
         return (
           <>
-            <Link to={"/property-list/" + params.row.id}>
-              <button className="userListEdit">View</button>
-            </Link>
-              {stat ?
-              (
-                <button className="userListEdit">Approved</button>
-              ) : 
-              (
-                params.row.status !== 'ACTIVE'  ? 
-                <button className="userListEdit">UnApproved</button>
-                : null
-              )} 
-        
-            {/* <DeleteOutline
+            <div className="actionBtn">
+              <div className="actionBtn2">
+                <Link to={"/property-list/" + params.row.id}>
+                  <button className="userListEdit">View</button>
+                </Link>
+              </div>
+              {/* <div className="actionBtn2">
+                {stat ? (
+                  <button className="userListEdit">Approved</button>
+                ) : params.row.status !== "ACTIVE" ? (
+                  <button className="userListEdit">UnApproved</button>
+                ) : null}
+              </div> */}
+
+              {/* <DeleteOutline
               className="userListDelete"
               // onClick={() => handleDelete(params.row.id)}
             /> */}
+            </div>
           </>
         );
       },
     },
   ];
-
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -126,10 +128,13 @@ export default function PropertyList() {
     return (
       item.propertyRef.toLowerCase().includes(search.toLowerCase()) ||
       item.entityLevel.toLowerCase().includes(search.toLowerCase()) ||
-      item.status.toLowerCase().includes(search.toLowerCase())
+      item.status.toLowerCase().includes(search.includes().toLowerCase())
     );
   });
 
+  // console.log(searchProperty.filter((t)=>t.status === "ACTIVE"? "approved":"unapproved"), "searchProperty");
+
+ 
   return (
     <div className="containerSide">
       <Sidebar />

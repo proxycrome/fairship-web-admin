@@ -168,7 +168,7 @@ function SingleSerProvider() {
                     <tr className="widgetLgTr">
                       <th className="widgetLgTh">id</th>
                       <th className="widgetLgTh"> Type</th>
-                      <th className="widgetLgTh">Price Range</th>
+                      {/* <th className="widgetLgTh">Price Range</th> */}
                       <th className="widgetLgTh">Yrs Of Experience</th>
                     </tr>
                     {singleservice.serviceProviderDetail?.servicesProvided.map(
@@ -176,7 +176,7 @@ function SingleSerProvider() {
                         <tr className="widgetLgTr" key={itm.id}>
                           <td className="widgetLgName">{itm.id}</td>
                           <td className="widgetLgDate">{itm.serviceType}</td>
-                          <td className="widgetLgAmount">{itm.priceRange}</td>
+                          {/* <td className="widgetLgAmount">{itm.priceRange}</td> */}
                           <td className="widgetLgAmount">
                             {itm.yearsOfExperience}
                           </td>

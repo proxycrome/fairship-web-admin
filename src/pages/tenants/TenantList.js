@@ -64,7 +64,7 @@ export default function TenantList() {
   //get tenantList
   const tenantReducer = useSelector((state) => state.tenants);
   const tenantList = tenantReducer.allTenant.entities;
-  // console.log(tenantList, "tenantList");
+  console.log(tenantList, "tenantList");
 
   //dispatch get all Agent
   useEffect(() => {
@@ -128,13 +128,19 @@ export default function TenantList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/tenants/" + params.row.email}>
-              <button className="productListEdit">View</button>
-            </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            <div className="actionBtn">
+              <div className="actionBtn2">
+                <Link to={"/tenants/" + params.row.email}>
+                  <button className="productListEdit">View</button>
+                </Link>
+              </div>
+              <div className="actionBtn2">
+                <DeleteOutline
+                  className="productListDelete"
+                  onClick={() => handleDelete(params.row.id)}
+                />
+              </div>
+            </div>
           </>
         );
       },

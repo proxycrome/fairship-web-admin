@@ -7,6 +7,7 @@ import { getPropertyOwersList } from "../redux/propertyOwers/propertyOwerActions
 import { getTenantList } from "../redux/tenants/tenantActions";
 
 import { Link } from "react-router-dom";
+import { getServiceProviderList } from "../redux/serviceProviders/serviceProviderActions";
 
 export default function FeaturedInfo() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function FeaturedInfo() {
     dispatch(getAllAgent());
     dispatch(getPropertyOwersList());
     dispatch(getTenantList());
+    dispatch(getServiceProviderList())
   }, [dispatch]);
 
   return (

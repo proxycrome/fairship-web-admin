@@ -16,8 +16,8 @@ export default function WidgetLg() {
   
   const adminList = useSelector((state) => state.admin);
   const admin = adminList.allAdmin.entities;
-  // const agentLength = agent.length;
 
+  console.log(admin, 'admin')
   const showMore = () => {
     setItemToShow(admin.length);
   };
@@ -37,13 +37,13 @@ export default function WidgetLg() {
       <>
         <ul className="widgetSmList">
           <li className="widgetSmListItem" key={item.id}>
-            <img src={item.profilePhoto} alt="" className="widgetSmImg" />
+            {/* <img src={item.profilePhoto} alt="" className="widgetSmImg" /> */}
             <div className="widgetLgUser">
-              <span className="widgetSmUsername">{item?.administrator?.fullName}</span>
+              <span className="widgetSmUsername">{item?.email}</span>
             </div>
-            <div className="widgetLgUser">  
+            {/* <div className="widgetLgUser">
               <span className="widgetSmUserTitle">{item.phone}</span>
-            </div>
+            </div> */}
           </li>
         </ul>
       </>

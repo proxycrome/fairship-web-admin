@@ -6,9 +6,10 @@ import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
 import { getServiceProviderList, deleteServiceProvider } from "../../redux/serviceProviders/serviceProviderActions";
+import CustomDialog from "../../components/CustomDialog";
 
 
-function ServiceProviderList() {
+function ServiceProviderList({open}) {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -16,19 +17,26 @@ function ServiceProviderList() {
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serProviderList = serviceProviderReducer.allServiceProviders.entities;
 
+  // console.log(serProviderList, "serProvider");
+
+  //  const getAllRequest = properties?.filter((r) => r.status === "PENDING");
+  // const getAllRequest = properties?.filter((r) =>
+  //   r.status.toLowerCase().includes(radioSearch.toLowerCase())
+  // );
+
   // local states
-  // console.log({ serviceProviderReducer, serProviderList }, "service");
+  console.log({ serviceProviderReducer, serProviderList }, "service");
 
   useEffect(() => {
     dispatch(getServiceProviderList());
   }, [dispatch]);
 
-  console.log(serProviderList)
+  console.log(serProviderList);
 
   // !come back to this...
   const handleDelete = (id) => {
     // setData(data.filter((item) => item.id !== id));
-    dispatch(deleteServiceProvider(id))
+    dispatch(deleteServiceProvider(id));
     dispatch(getServiceProviderList());
   };
 
@@ -58,16 +66,17 @@ function ServiceProviderList() {
     //   width: 120,
     // },
     {
-      field: "state",
-      headerName: "State",
+      field: "status",
+      headerName: "Status",
       width: 120,
       renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            {/* <img className="productListImg" src={params.row.img} alt="" /> */}
-            {params.row.address?.state}
-          </div>
-        );
+        return(params.row.serviceProviderDetail.registrationStatus)
+        // return (
+        //   <div className="productListItem">
+        //     {/* <img className="productListImg" src={params.row.img} alt="" /> */}
+        //     {params.row.address?.state}
+        //   </div>
+        // );
       },
     },
     {
@@ -81,15 +90,19 @@ function ServiceProviderList() {
       width: 150,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={"/service-provider-list/" + params.row.email}>
-              <button className="productListEdit">View</button>
-            </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
+          <div className="actionBtn">
+            <div className="actionBtn2">
+              <Link to={"/service-provider-list/" + params.row.email}>
+                <button className="productListEdit">View</button>
+              </Link>
+            </div>
+            <div className="actionBtn2">
+              <DeleteOutline
+                className="productListDelete"
+                onClick={() => handleDelete(params.row.id)}
+              />
+            </div>
+          </div>
         );
       },
     },
@@ -104,9 +117,13 @@ function ServiceProviderList() {
     return (
       item.email.includes(search) ||
       item.firstName.includes(search) ||
-      item.lastName.includes(search)
+      item.lastName.includes(search) ||
+      item.serviceProviderDetail
+        .registrationStatus.toLowerCase()
+        .includes(search.toLowerCase())
     );
   });
+
 
   return (
     <div className="containerSide">
@@ -143,6 +160,7 @@ function ServiceProviderList() {
           />
         )}
       </div>
+      {/* <CustomDialog  open={false} /> */}
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function PropertyApprovalReq() {
   const [itemsToShow, setItemToShow] = useState(3);
   const [radioSearch, setRadioSearch] = useState('')
   const propertyList = useSelector((state) => state.properties);
-  const properties = propertyList.allProperties.entities;
+  const properties = propertyList?.allProperties?.entities;
   
   const showMore = () => {
     setItemToShow(properties.length);
@@ -38,7 +38,7 @@ export default function PropertyApprovalReq() {
     getAllRequest &&
     getAllRequest.slice(0, itemsToShow).map((item) => {
       return (
-        <>
+        <div key={item.id}>
           <ul className="widgetSmList">
             <Link to={`/property-list/${item.id}`}>
               <li className="widgetSmListItem" key={item.id}>
@@ -56,7 +56,7 @@ export default function PropertyApprovalReq() {
               </li>
             </Link>
           </ul>
-        </>
+        </div>
       );
     });
 

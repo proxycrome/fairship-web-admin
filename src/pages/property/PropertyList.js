@@ -17,7 +17,7 @@ export default function PropertyList() {
   const [stat, setStat] = useState(false);
   const dispatch = useDispatch();
   const propertyList = useSelector((state) => state.properties);
-  const properties = propertyList.allProperties.entities;
+  const properties = propertyList?.allProperties?.entities;
 
   // console.log({ propertyList, properties }, "propertyList");
 
@@ -39,6 +39,7 @@ export default function PropertyList() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
+    { field: "title", headerName: "Title", width: 150 },
     {
       field: "propertyRef",
       headerName: "Property Ref",
@@ -52,7 +53,7 @@ export default function PropertyList() {
       //     );
       //   },
     },
-    { field: "entityLevel", headerName: "Entity Level", width: 200 },
+    { field: "entityLevel", headerName: "Entity Level", width: 150 },
     {
       field: "status",
       headerName: "Status",
@@ -89,7 +90,7 @@ export default function PropertyList() {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         // console.log(params, 'view');
         return (

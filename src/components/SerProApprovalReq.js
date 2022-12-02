@@ -41,7 +41,7 @@ export default function SerProApprovalReq() {
     serQuest &&
     serQuest.slice(0, itemsToShow).map((item) => {
       return (
-        <>
+        <div key={item.id}>
           <ul className="widgetSmList">
             <Link to={`/service-provider-list/${item.email}`}>
               <li className="widgetSmListItem" key={item.id}>
@@ -59,7 +59,7 @@ export default function SerProApprovalReq() {
               </li>
             </Link>
           </ul>
-        </>
+        </div>
       );
     });
 

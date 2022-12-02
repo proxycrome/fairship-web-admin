@@ -16,12 +16,12 @@ export default function Home() {
         <Sidebar />
         <div className="home">
           <FeaturedInfo />
-          <Chart
+          {/* <Chart
             data={userData}
             title="User Activities"
             grid
             dataKey="Active User"
-          />
+          /> */}
           <div className="homeWidgets">
             <WidgetSm />
             {/* <WidgetLg /> */}

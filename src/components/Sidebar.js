@@ -25,9 +25,9 @@ export default function Sidebar() {
   };
 
   const handleLogOut = () => {
-    window.localStorage.clear()
-    window.location.href= '/'
-  }
+    window.localStorage.clear();
+    window.location.href = "/";
+  };
 
   return (
     <nav className="sidebar">
@@ -87,12 +87,11 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Manage Properties</h3>
           <ul className="sidebarList">
-            <NavLink style={activeLink} to="/all-bookings" className="link">
+            {/* <NavLink style={activeLink} to="/all-bookings" className="link">
               <li className="sidebarListItem">
-                {/* <MailOutline className="sidebarIcon" /> */}
                 Bookings
               </li>
-            </NavLink>
+            </NavLink> */}
             <NavLink style={activeLink} to="/property-list" className="link">
               <li className="sidebarListItem">
                 {/* <DynamicFeed className="sidebarIcon" /> */}
@@ -107,8 +106,20 @@ export default function Sidebar() {
         </div>
 
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
+          <h3 className="sidebarTitle">Price Settings</h3>
           <ul className="sidebarList">
+            <NavLink style={activeLink} to="/walk-through" className="link">
+              <li className="sidebarListItem">
+                {/* <DynamicFeed className="sidebarIcon" /> */}
+                Walkthrough fees
+              </li>
+            </NavLink>
+            <NavLink style={activeLink} to="/pma-fees" className="link">
+              <li className="sidebarListItem">
+                {/* <DynamicFeed className="sidebarIcon" /> */}
+                PMA fees
+              </li>
+            </NavLink>
             {/* <li className="sidebarListItem">
               <MailOutline className="sidebarIcon" />
               Mail
@@ -117,10 +128,10 @@ export default function Sidebar() {
               <DynamicFeed className="sidebarIcon" />
               Feedback
             </li> */}
-            <li className="sidebarListItem">
-              {/* <ChatBubbleOutline className="sidebarIcon" /> */}
+            {/* <li className="sidebarListItem">
+              <ChatBubbleOutline className="sidebarIcon" />
               Messages
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">

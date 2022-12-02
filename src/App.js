@@ -20,10 +20,11 @@ import StaffList from "./pages/staffs/StaffList";
 // import CreateStaff from "./pages/staffs/newStaff/CreateStaff";
 import SerTypeList from "./pages/service-provider/serviceCategory/SerTypeList";
 import SerCategoryList from "./pages/service-provider/serviceCategory/SerCategoryList";
+import WalkThroughList from "./pages/Walkthrough/WalkThroughList";
+import PmaFeeList from "./pages/pma/PmaFeeList";
 
 
 function App() {
-
  
   return (
     <>
@@ -52,7 +53,8 @@ function App() {
         <Route path="property-list" element={<PropertyList />} />
         <Route path="/property-list/:id" element={<SingleProperty />} />
         <Route path="/staff-list" element={<StaffList />} />
-        {/* <Route path="/new-staff" element={<CreateStaff />} /> */}
+        <Route path="/walk-through" element={<WalkThroughList />} />
+        <Route path="/pma-fees" element={<PmaFeeList />} />
 
         {/* <Route path="/newproduct" element={<NewProduct />} /> */}
       </Routes>

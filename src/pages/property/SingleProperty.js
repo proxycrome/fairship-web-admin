@@ -1,35 +1,32 @@
-import {
-  CalendarToday,
-  LocationSearching,
-  MailOutline,
-  PermIdentity,
-  PhoneAndroid,
-  Publish,
-} from "@material-ui/icons";
 import { useEffect, useState } from "react";
+import { Card, CardBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
-import { singlePropertyById ,propertyapproval} from "../../redux/property/propertyActions";
+import {
+  singlePropertyById,
+  propertyapproval,
+} from "../../redux/property/propertyActions";
+import "bootstrap/dist/css/bootstrap.css";
 
 function SingleProperty() {
   const dispatch = useDispatch();
   const params = useParams();
-  console.log(params, 'proParams')
+  // console.log(params, 'proParams')
 
   const propertyList = useSelector((state) => state.properties);
   const singleProperty = propertyList.viewProperty;
 
-  console.log({ propertyList, singleProperty }, "propertyList");
+  console.log(singleProperty, "singleProperty");
 
   useEffect(() => {
     dispatch(singlePropertyById(params.id));
   }, [params]);
 
   const propertyapprove = (id) => {
-    console.log(id)
-    dispatch(propertyapproval(id))
-  }
+    console.log(id);
+    dispatch(propertyapproval(id));
+  };
 
   return (
     <div className="containerSide">
@@ -44,22 +41,27 @@ function SingleProperty() {
         <div className="userContainer">
           <div className="userShow">
             <div className="userShowTop">
-              {singleProperty.images?.map((img) => {
+              {singleProperty?.images?.map((img) => {
                 return (
-                  <a href={img.imageUrl} target="_blank">
+                  <a
+                    href={img.imageUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={img.id}
+                  >
                     <img src={img.imageUrl} alt="" className="userShowImg" />
                   </a>
                 );
               })}
               <div className="userShowTopTitle">
                 <span className="userShowUserTitle">
-                  {singleProperty.propertyRef}
+                  {singleProperty?.propertyRef}
                 </span>
                 <span className="userShowUsername">
-                  {singleProperty.entityLevel}
+                  {singleProperty?.entityLevel}
                 </span>
                 <span className="userShowUsername">
-                  {singleProperty.feature}
+                  {singleProperty?.feature}
                 </span>
               </div>
             </div>
@@ -68,39 +70,39 @@ function SingleProperty() {
               <div className="userShowInfo">
                 <span className="userShowIcon">Bathroom:</span>
                 <span className="userShowInfoTitle">
-                  {singleProperty.bathrooms}
+                  {singleProperty?.bathrooms}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Bedroom:</span>
                 <span className="userShowInfoTitle">
-                  {singleProperty.bedrooms}
+                  {singleProperty?.bedrooms}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Description:</span>
                 <span className="userShowInfoTitle">
-                  {singleProperty.description}
+                  {singleProperty?.description}
                 </span>
               </div>
               <span className="userShowTitle">Payment Details</span>
               <div className="userShowInfo">
                 Price:
                 <span className="userShowInfoTitle">
-                  {singleProperty.price}
+                  {singleProperty?.price}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Period:</span>
 
                 <span className="userShowInfoTitle">
-                  {singleProperty.periodInMonths} months
+                  {singleProperty?.periodInMonths} months
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Parking Lot:</span>
                 <span className="userShowInfoTitle">
-                  {singleProperty.parkingLot}
+                  {singleProperty?.parkingLot}
                 </span>
               </div>
             </div>
@@ -111,19 +113,19 @@ function SingleProperty() {
             <div className="userShowInfo">
               <span className="userShowIcon">House Address:</span>
               <span className="userShowInfoTitle">
-                {singleProperty.address?.houseNoAddress}
+                {singleProperty?.address?.houseNoAddress}
               </span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">city:</span>
               <span className="userShowInfoTitle">
-                {singleProperty.address?.city}
+                {singleProperty?.address?.city}
               </span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">country:</span>
               <span className="userShowInfoTitle">
-                {singleProperty.address?.country}
+                {singleProperty?.address?.country}
               </span>
             </div>
             <span className="userShowTitle">Other info </span>
@@ -165,7 +167,7 @@ function SingleProperty() {
             {singleProperty?.status !== "ACTIVE" ? (
               <button
                 className="userListEdit"
-                onClick={propertyapprove(params.id)}
+                onClick={() => propertyapprove(params.id)}
               >
                 UnApproved
               </button>
@@ -174,6 +176,33 @@ function SingleProperty() {
             )}
           </div>
         </div>
+        <Card className="mt-4">
+          <CardBody>
+            <div>
+              <h6>Documents</h6>
+              <div>
+                {/* <span>Lease Agreement</span> */}
+                <div className="d-flex flex-wrap mt-2">
+                  {singleProperty?.documents?.length > 0
+                    ? singleProperty?.documents?.map((item) => (
+                        <Card key={item.id} className="shadow-lg mr-3 mt-3">
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <CardBody className="">
+                              <h6 className="card-title">{item.name}</h6>
+                            </CardBody>
+                          </a>
+                        </Card>
+                      ))
+                    : "No document found"}
+                </div>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
       </div>
       {/* <Outlet /> */}
     </div>

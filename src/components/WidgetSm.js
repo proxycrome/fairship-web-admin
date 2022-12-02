@@ -29,7 +29,7 @@ export default function WidgetSm() {
     agent &&
     agent.slice(0, itemsToShow).map((item) => {
       return (
-        <>
+        <div key={item.id}>
           <ul className="widgetSmList">
             <li className="widgetSmListItem" key={item.id}>
               {/* <img src={item.profilePhoto} alt="" className="widgetSmImg" /> */}
@@ -45,7 +45,7 @@ export default function WidgetSm() {
               </button> */}
             </li>
           </ul>
-        </>
+        </div>
       );
     });
 

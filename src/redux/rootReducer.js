@@ -7,6 +7,8 @@ import serviceProviderReducer from "./serviceProviders/serviceProviderReducer";
 import tenantReducer from "./tenants/tenantReducer";
 import usersReducer from "./user/usersReducer";
 import adminReducer from "./admins/adminReducer";
+import walkThroughReducer from "./walkthrough/walkthroughReducer";
+import pmaReducer from "./pma/pmaReducer";
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
   propertyOwers: propertyOwersReducer,
   serviceProviders: serviceProviderReducer,
   bookings: bookingReducer,
-  properties: propertyReducer
+  properties: propertyReducer,
+  walkthrough: walkThroughReducer,
+  pma: pmaReducer,
 });
 
 export default rootReducer;

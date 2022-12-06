@@ -9,6 +9,7 @@ import {
   APPROVE_PROPERTIES_SUCCESS,
   APPROVE_PROPERTIES_ERROR,
 } from "./propertyType";
+import toast from "react-hot-toast";
 
 //get property  List api call
 export const getPropertyList = () => {
@@ -116,11 +117,12 @@ export const propertyapproval = (id) => {
       .then((response) => {
         // console.log(response, "property");
         const data = response.data;
-        console.log(data);
         dispatch({
           type: APPROVE_PROPERTIES_SUCCESS,
           payload: data,
         });
+        dispatch(singlePropertyById(id));
+        toast.success(data.message, {position: "top-right"});
         // localStorage.getItem("token", data.token);
         // console.log(data, 'property')
       })
@@ -130,6 +132,7 @@ export const propertyapproval = (id) => {
           type: APPROVE_PROPERTIES_ERROR,
           payload: error?.response?.data?.message,
         });
+        toast.error(error?.response?.data?.message, {position: "top-right"});
       });
   };
 };

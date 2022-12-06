@@ -2,25 +2,24 @@ import { useEffect, useState } from "react";
 // import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import {Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAdmin } from "../../redux/admins/adminActions";
-import {deleteSingleAgent} from '../../redux/agents/agentActions';
+import { deleteSingleAgent } from "../../redux/agents/agentActions";
 import { CircularProgress } from "@material-ui/core";
-import {openAdminCategoryDialog} from '../../redux/admins/adminActions';
-import CreateStaffList from './CreateStaffList'
+import { openAdminCategoryDialog } from "../../redux/admins/adminActions";
+import CreateStaffList from "./CreateStaffList";
 
 export default function StaffList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-   
 
-  const adminReducer = useSelector((state) => state.admin)
-  console.log(adminReducer)
+  const adminReducer = useSelector((state) => state.admin);
+  console.log(adminReducer);
 
-  const admin = adminReducer.allAdmin.entities
-  
+  const admin = adminReducer?.allAdmin?.entities;
+  const loading = adminReducer?.loading;
 
   //console.log
   // console.log({ agentList, agent }, "allagent");
@@ -33,11 +32,9 @@ export default function StaffList() {
 
   //! come back to it.....
   const handleDelete = (id) => {
-    console.log(id)
-    dispatch(deleteSingleAgent(id))
+    console.log(id);
+    dispatch(deleteSingleAgent(id));
   };
-
-  
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -49,7 +46,9 @@ export default function StaffList() {
         return (
           <div className="userListUser">
             <img className="userListImg" src={params.row.profilePhoto} alt="" />
-            {params.row?.administrator === null ? '' : params.row?.administrator?.fullName }
+            {params.row?.administrator === null
+              ? ""
+              : params.row?.administrator?.fullName}
           </div>
         );
       },
@@ -121,7 +120,7 @@ export default function StaffList() {
             Create Admin
           </button>
         </div>
-        {!searchAdmin ? (
+        {!searchAdmin || !admin || loading ? (
           <CircularProgress />
         ) : (
           <DataGrid
@@ -132,7 +131,7 @@ export default function StaffList() {
             checkboxSelection
           />
         )}
-       <CreateStaffList/>
+        <CreateStaffList />
         {/* <Outlet /> */}
       </div>
     </div>

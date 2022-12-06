@@ -8,63 +8,16 @@ import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getTenantList, deleteSingleTenant } from "../../redux/tenants/tenantActions";
+import { Toaster } from "react-hot-toast";
 
-
-// const userRows = [
-//   {
-//     id: 1,
-//     username: "Jon Snow",
-//     profilePhoto:
-//       "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//     email: "jon@gmail.com",
-//     //  status: "active",
-//     phone: "$120.00",
-//   },
-//   {
-//     id: 2,
-//     username: "Jon Snow",
-//     profilePhoto:
-//       "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//     email: "jon@gmail.com",
-//     status: "active",
-//     phone: "$120.00",
-//   },
-//   {
-//     id: 3,
-//     username: "Jon Snow",
-//     profilePhoto:
-//       "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//     email: "jon@gmail.com",
-//     //  status: "active",
-//     phone: "$120.00",
-//   },
-//   {
-//     id: 4,
-//     username: "Jon Snow",
-//     profilePhoto:
-//       "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//     email: "jon@gmail.com",
-//     status: "blocked",
-//     phone: "$120.00",
-//   },
-//   {
-//     id: 5,
-//     username: "Jon Snow",
-//     profilePhoto:
-//       "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//     email: "jon@gmail.com",
-//     status: "active",
-//     phone: "$120.00",
-//   },
-// ];
 
 export default function TenantList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   //get tenantList
   const tenantReducer = useSelector((state) => state.tenants);
-  const tenantList = tenantReducer.allTenant.entities;
-  console.log(tenantList, "tenantList");
+  const tenantList = tenantReducer?.allTenant?.entities;
+  const loading = tenantReducer?.loading;
 
   //dispatch get all Agent
   useEffect(() => {
@@ -73,9 +26,7 @@ export default function TenantList() {
 
   //!come back to this.....
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
     dispatch(deleteSingleTenant(id));
-    dispatch(getTenantList());
   };
 
   const columns = [
@@ -161,6 +112,7 @@ export default function TenantList() {
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="productList">
         <div className="search">
@@ -178,7 +130,7 @@ export default function TenantList() {
             <button className="userAddButton">Create</button>
           </Link> */}
         </div>
-        {!searchTenant ? (
+        {!searchTenant || !tenantList || loading ? (
           <CircularProgress />
         ) : (
           <DataGrid

@@ -17,11 +17,11 @@ function SinglePropertyOwner() {
   const params = useParams();
 
   const allPropertyOwers = useSelector((state) => state.propertyOwers);
-  const singlePropertOwer = allPropertyOwers.propertyOwer;
+  const singlePropertOwer = allPropertyOwers?.propertyOwer;
 
   console.log(singlePropertOwer, "singlePropertOwer");
 
-  console.log({allPropertyOwers,singlePropertOwer}, "propertyOwers");
+  console.log({ allPropertyOwers, singlePropertOwer }, "propertyOwers");
 
   useEffect(() => {
     dispatch(singleOwerDetailsByEmail(params.email));
@@ -41,16 +41,16 @@ function SinglePropertyOwner() {
           <div className="userShow">
             <div className="userShowTop">
               <img
-                src={singlePropertOwer.profilePhoto}
+                src={singlePropertOwer?.profilePhoto}
                 alt=""
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
                 <span className="userShowUsername">
-                  {singlePropertOwer.fullName}
+                  {singlePropertOwer?.fullName}
                 </span>
                 <span className="userShowUserTitle">
-                  00000{singlePropertOwer.id}
+                  00000{singlePropertOwer?.id}
                 </span>
               </div>
             </div>
@@ -59,20 +59,20 @@ function SinglePropertyOwner() {
               <div className="userShowInfo">
                 <span className="userShowIcon">Property ower Type:</span>
                 <span className="userShowInfoTitle">
-                  {singlePropertOwer.agentDetail?.type}
+                  {singlePropertOwer?.agentDetail?.type}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Property ower Company:</span>
                 <span className="userShowInfoTitle">
-                  {singlePropertOwer.agentDetail?.company}
+                  {singlePropertOwer?.agentDetail?.company}
                 </span>
               </div>
               <span className="userShowTitle">Contact Details</span>
               <div className="userShowInfo">
                 Phone
                 <span className="userShowInfoTitle">
-                  {singlePropertOwer.phone}
+                  {singlePropertOwer?.phone}
                 </span>
               </div>
               <div className="userShowInfo">
@@ -80,13 +80,13 @@ function SinglePropertyOwner() {
                 <span className="userShowIcon">Email:</span>
 
                 <span className="userShowInfoTitle">
-                  {singlePropertOwer.email}
+                  {singlePropertOwer?.email}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Country:</span>
                 <span className="userShowInfoTitle">
-                  {singlePropertOwer.address?.country}
+                  {singlePropertOwer?.address?.country}
                 </span>
               </div>
             </div>
@@ -98,50 +98,53 @@ function SinglePropertyOwner() {
             <div className="userShowInfo">
               <span className="userShowIcon">House Address:</span>
               <span className="userShowInfoTitle">
-                {singlePropertOwer.address?.houseNoAddress}
+                {singlePropertOwer?.address?.houseNoAddress}
               </span>
             </div>
             <div className="userShowInfo">
               {/* <LocationSearching className="userShowIcon" /> */}
               <span className="userShowIcon">Local Govt Area:</span>
               <span className="userShowInfoTitle">
-                {singlePropertOwer.address?.lga}
+                {singlePropertOwer?.address?.lga}
               </span>
             </div>
             <div className="userShowInfo">
               <span className="userShowIcon">State:</span>
               <span className="userShowInfoTitle">
-                {singlePropertOwer.address?.state}
+                {singlePropertOwer?.address?.state}
               </span>
             </div>
             {/* <span className="userShowTitle">Other info </span> */}
-           
 
             <span className="userShowTitle">Properties</span>
             <div className="userShowInfo">
               <span className="userShowInfoTitle">
                 <table className="widgetLgTable">
-                  <tr className="widgetLgTr">
-                    <th className="widgetLgTh">Title</th>
-                    <th className="widgetLgTh">PropertyRef</th>
-                    <th className="widgetLgTh">Entity Level</th>
-                    <th className="widgetLgTh">Type</th>
-                  </tr>
-                  {singlePropertOwer.properties?.map((itm) => {
-                    return (
-                      <tr className="widgetLgTr" key={itm.id}>
-                        <td className="widgetLgName">{itm.title}</td>
-                        <td className="widgetLgName">{itm.propertyRef}</td>
-                        <td className="widgetLgDate">{itm.entityLevel}</td>
-                        <td className="widgetLgAmount">{itm.type}</td>
-                        <td className="widgetLgUser">
-                          <Link to={`/property-list/${itm.id}`}>
-                            <h5>View</h5>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  <thead>
+                    <tr className="widgetLgTr">
+                      <th className="widgetLgTh">Title</th>
+                      <th className="widgetLgTh">PropertyRef</th>
+                      <th className="widgetLgTh">Entity Level</th>
+                      <th className="widgetLgTh">Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {singlePropertOwer?.properties?.map((itm) => {
+                      return (
+                        <tr className="widgetLgTr" key={itm.id}>
+                          <td className="widgetLgName">{itm.title}</td>
+                          <td className="widgetLgName">{itm.propertyRef}</td>
+                          <td className="widgetLgDate">{itm.entityLevel}</td>
+                          <td className="widgetLgAmount">{itm.type}</td>
+                          <td className="widgetLgUser">
+                            <Link to={`/property-list/${itm.id}`}>
+                              <h5>View</h5>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </span>
             </div>
@@ -151,7 +154,7 @@ function SinglePropertyOwner() {
               <br />
               <div className="userShowTop">
                 <img
-                  src={singlePropertOwer.profilePhoto}
+                  src={singlePropertOwer?.profilePhoto}
                   alt=""
                   className="userShowImg"
                 />

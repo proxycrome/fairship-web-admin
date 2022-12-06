@@ -7,20 +7,25 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getPropertyOwersList, deleteSingleOwner } from "../../redux/propertyOwers/propertyOwerActions";
-import {deleteSingleAgent} from '../../redux/agents/agentActions';
+import {
+  getPropertyOwersList,
+  deleteSingleOwner,
+} from "../../redux/propertyOwers/propertyOwerActions";
+import { deleteSingleAgent } from "../../redux/agents/agentActions";
 import { CircularProgress } from "@material-ui/core";
+import { Toaster } from "react-hot-toast";
 
 function PropertOwners() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   //get property ower list from Reducer
   const propertyOwersReducer = useSelector((state) => state.propertyOwers);
-  const propertyOwersList = propertyOwersReducer.allPropertyOwers.entities;
+  const propertyOwersList = propertyOwersReducer?.allPropertyOwers?.entities;
+  const loading = propertyOwersReducer?.loading;
 
   //define states and console.log
   // const [data, setData] = useState(propertyOwersList);
-  console.log({  propertyOwersList }, "propertyower234");
+  console.log({ propertyOwersList }, "propertyower234");
 
   useEffect(() => {
     dispatch(getPropertyOwersList());
@@ -28,8 +33,7 @@ function PropertOwners() {
 
   //! come back to this...
   const handleDelete = (id) => {
-    dispatch(deleteSingleOwner(id))
-    dispatch(getPropertyOwersList());
+    dispatch(deleteSingleOwner(id));
   };
 
   const columns = [
@@ -110,6 +114,7 @@ function PropertOwners() {
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="productList">
         <div className="search">
@@ -127,7 +132,7 @@ function PropertOwners() {
             <button className="userAddButton">Create</button>
           </Link> */}
         </div>
-        {!searchPropertyOwner ? (
+        {!searchPropertyOwner || !propertyOwersList || loading ? (
           <CircularProgress />
         ) : (
           <DataGrid

@@ -22,7 +22,7 @@ export default function Agent() {
 
   const allAgents = useSelector((state) => state.agents);
   const singleAgent = allAgents.agent;
-  console.log({singleAgent,allAgents}, 'singleAgent')
+  console.log({ singleAgent, allAgents }, "singleAgent");
 
   useEffect(() => {
     dispatch(getAgentDetailByEmail(params.email));
@@ -39,13 +39,17 @@ export default function Agent() {
           <div className="userShow">
             <div className="userShowTop">
               <img
-                src={singleAgent.profilePhoto}
+                src={singleAgent?.profilePhoto}
                 alt=""
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
-                <span className="userShowUsername">{singleAgent.fullName}</span>
-                <span className="userShowUserTitle">00000{singleAgent.id}</span>
+                <span className="userShowUsername">
+                  {singleAgent?.fullName}
+                </span>
+                <span className="userShowUserTitle">
+                  00000{singleAgent?.id}
+                </span>
               </div>
             </div>
             <div className="userShowBottom">
@@ -54,36 +58,36 @@ export default function Agent() {
                 {/* <PermIdentity className="userShowIcon" /> */}
                 <span className="userShowIcon">Agent Type:</span>
                 <span className="userShowInfoTitle">
-                  {singleAgent.agentDetail?.type}
+                  {singleAgent?.agentDetail?.type}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Agent Company:</span>
                 <span className="userShowInfoTitle">
-                  {singleAgent.agentDetail?.company}
+                  {singleAgent?.agentDetail?.company?.companyName}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Gender:</span>
-                <span className="userShowInfoTitle">{singleAgent.gender}</span>
+                <span className="userShowInfoTitle">{singleAgent?.gender}</span>
               </div>
               <span className="userShowTitle">Contact Details</span>
               <div className="userShowInfo">
                 {/* <PhoneAndroid className="userShowIcon" /> */}
                 Phone
-                <span className="userShowInfoTitle">{singleAgent.phone}</span>
+                <span className="userShowInfoTitle">{singleAgent?.phone}</span>
               </div>
               <div className="userShowInfo">
                 {/* <MailOutline className="userShowIcon" /> */}
                 <span className="userShowIcon">Email:</span>
 
-                <span className="userShowInfoTitle">{singleAgent.email}</span>
+                <span className="userShowInfoTitle">{singleAgent?.email}</span>
               </div>
               <div className="userShowInfo">
                 {/* <LocationSearching className="userShowIcon" /> */}
                 <span className="userShowIcon">Country:</span>
                 <span className="userShowInfoTitle">
-                  {singleAgent.address?.country}
+                  {singleAgent?.address?.country}
                 </span>
               </div>
             </div>
@@ -96,21 +100,21 @@ export default function Agent() {
               {/* <LocationSearching className="userShowIcon" /> */}
               <span className="userShowIcon">House Address:</span>
               <span className="userShowInfoTitle">
-                {singleAgent.address?.houseNoAddress}
+                {singleAgent?.address?.houseNoAddress}
               </span>
             </div>
             <div className="userShowInfo">
               {/* <LocationSearching className="userShowIcon" /> */}
               <span className="userShowIcon">Local Govt Area:</span>
               <span className="userShowInfoTitle">
-                {singleAgent.address?.lga}
+                {singleAgent?.address?.lga}
               </span>
             </div>
             <div className="userShowInfo">
               {/* <LocationSearching className="userShowIcon" /> */}
               <span className="userShowIcon">State:</span>
               <span className="userShowInfoTitle">
-                {singleAgent.address?.state}
+                {singleAgent?.address?.state}
               </span>
             </div>
             {/* //!other info */}
@@ -119,27 +123,31 @@ export default function Agent() {
             <div className="userShowInfo">
               <span className="userShowInfoTitle">
                 <table className="widgetLgTable">
-                  <tr className="widgetLgTr">
-                    <th className="widgetLgTh">Title</th>
-                    <th className="widgetLgTh">PropertyRef</th>
-                    <th className="widgetLgTh">Entity Level</th>
-                    <th className="widgetLgTh">Type</th>
-                  </tr>
-                  {singleAgent.properties?.map((itm) => {
-                    return (
-                      <tr className="widgetLgTr" key={itm.id}>
-                        <td className="widgetLgName">{itm.title}</td>
-                        <td className="widgetLgName">{itm.propertyRef}</td>
-                        <td className="widgetLgDate">{itm.entityLevel}</td>
-                        <td className="widgetLgAmount">{itm.type}</td>
-                        <td className="widgetLgUser">
-                          <Link to={`/property-list/${itm.id}`}>
-                            <h5>View</h5>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  <thead>
+                    <tr className="widgetLgTr">
+                      <th className="widgetLgTh">Title</th>
+                      <th className="widgetLgTh">PropertyRef</th>
+                      <th className="widgetLgTh">Entity Level</th>
+                      <th className="widgetLgTh">Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {singleAgent?.properties?.map((itm) => {
+                      return (
+                        <tr className="widgetLgTr" key={itm.id}>
+                          <td className="widgetLgName">{itm.title}</td>
+                          <td className="widgetLgName">{itm.propertyRef}</td>
+                          <td className="widgetLgDate">{itm.entityLevel}</td>
+                          <td className="widgetLgAmount">{itm.type}</td>
+                          <td className="widgetLgUser">
+                            <Link to={`/property-list/${itm.id}`}>
+                              <h5>View</h5>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </span>
             </div>
@@ -149,7 +157,7 @@ export default function Agent() {
               <br />
               <div className="userShowTop">
                 <img
-                  src={singleAgent.profilePhoto}
+                  src={singleAgent?.profilePhoto}
                   alt=""
                   className="userShowImg"
                 />

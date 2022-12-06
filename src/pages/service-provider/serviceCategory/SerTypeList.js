@@ -8,24 +8,27 @@ import { CircularProgress } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 // import "./stafflist.css";
 import {
+  deleteServiceType,
   getAllServiceType,
   openServiceTypeDialog,
+  openServiceTypeEditDialog,
   serviceCategories,
 } from "../../../redux/serviceProviders/serviceProviderActions";
 import CreateSerType from "./CreateSerType";
-
-
+import { Toaster } from "react-hot-toast";
+import EditSerType from "./EditSerType";
 
 function SerTypeList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
-  const serTypeList = serviceProviderReducer.serviceType;
+  const serTypeList = serviceProviderReducer?.serviceType;
+  const loading = serviceProviderReducer?.loading;
 
   //  const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.serviceCategories;
 
-  console.log({  serTypeList, serCategory }, "service");
+  console.log({ serTypeList, serCategory }, "service");
 
   //!coming back to this...
   //   const handleDelete = (id) => {
@@ -36,6 +39,11 @@ function SerTypeList() {
     dispatch(getAllServiceType());
     dispatch(serviceCategories());
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    // console.log(id);
+    dispatch(deleteServiceType(parseInt(id)));
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -50,12 +58,23 @@ function SerTypeList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to="#">
-              <button className="userListEdit">Edit</button>
-            </Link>
+            <button
+              className="userListEdit"
+              onClick={() =>
+                dispatch(
+                  openServiceTypeEditDialog({
+                    name: params.row.name,
+                    id: params.row.id,
+                  })
+                )
+              }
+            >
+              Edit
+            </button>
+
             <DeleteOutline
               className="userListDelete"
-              //   onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)}
             />
           </>
         );
@@ -68,14 +87,13 @@ function SerTypeList() {
 
   //search
   const searchSerType = serTypeList?.filter((item) => {
-    return (
-      item.name.toLowerCase().includes(search.toLowerCase())
-      // item.status.toLowerCase().includes(search.toLowerCase())
-    );
+    return item.name.toLowerCase().includes(search.toLowerCase());
+    // item.status.toLowerCase().includes(search.toLowerCase())
   });
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="productList">
         <div className="search">
@@ -96,7 +114,7 @@ function SerTypeList() {
           </button>
         </div>
 
-        {!searchSerType ? (
+        {!searchSerType || !serTypeList || loading ? (
           <CircularProgress className="spinner" />
         ) : (
           <DataGrid
@@ -109,6 +127,7 @@ function SerTypeList() {
         )}
       </div>
       <CreateSerType />
+      <EditSerType />
     </div>
   );
 }

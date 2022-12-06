@@ -15,7 +15,8 @@ function ServiceProviderList({open}) {
 
   //useSelector
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
-  const serProviderList = serviceProviderReducer.allServiceProviders.entities;
+  const serProviderList = serviceProviderReducer?.allServiceProviders?.entities;
+  const loading = serviceProviderReducer?.loading;
 
   // console.log(serProviderList, "serProvider");
 
@@ -35,9 +36,7 @@ function ServiceProviderList({open}) {
 
   // !come back to this...
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
     dispatch(deleteServiceProvider(id));
-    dispatch(getServiceProviderList());
   };
 
   const columns = [
@@ -148,7 +147,7 @@ function ServiceProviderList({open}) {
             </Link> */}
           </div>
         </div>
-        {!searchSerProvider ? (
+        {!searchSerProvider || !serProviderList || loading ? (
           <CircularProgress className="spinner" />
         ) : (
           <DataGrid

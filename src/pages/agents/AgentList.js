@@ -5,14 +5,19 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link, Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAgent, deleteSingleAgent } from "../../redux/agents/agentActions";
-import { CircularProgress } from "@material-ui/core"
+import {
+  getAllAgent,
+  deleteSingleAgent,
+} from "../../redux/agents/agentActions";
+import { CircularProgress } from "@material-ui/core";
+import { Toaster } from "react-hot-toast";
 
 export default function AgentList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const agentList = useSelector((state) => state.agents);
-  const agent = agentList.allAgent.entities;
+  const agent = agentList?.allAgent?.entities;
+  const loading = agentList?.loading;
 
   //console.log
   console.log({ agentList, agent }, "allagent");
@@ -24,13 +29,9 @@ export default function AgentList() {
   }, [dispatch]);
 
   //! come back to it.....
-  const handleDelete = (id) => {
-    // console.log(id)
-    dispatch(deleteSingleAgent(id))
-    dispatch(getAllAgent());
+  const handleDelete = async (id) => {
+    await dispatch(deleteSingleAgent(id));
   };
-
-  
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -83,15 +84,15 @@ export default function AgentList() {
           <>
             <div className="actionBtn">
               <div className="actionBtn2">
-              <Link to={"/agent/" + params.row.email}>
-                <button className="userListEdit">View</button>
-              </Link>
+                <Link to={"/agent/" + params.row.email}>
+                  <button className="userListEdit">View</button>
+                </Link>
               </div>
-               <div className="actionBtn2">
-              <DeleteOutline
-                className="userListDelete"
-                onClick={() => handleDelete(params.row.id)}
-              />
+              <div className="actionBtn2">
+                <DeleteOutline
+                  className="userListDelete"
+                  onClick={() => handleDelete(params.row.id)}
+                />
               </div>
             </div>
           </>
@@ -115,6 +116,7 @@ export default function AgentList() {
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="userList">
         <div className="search">
@@ -135,7 +137,7 @@ export default function AgentList() {
             <button className="userAddButton">Create</button>
           </Link> */}
         </div>
-        {!searchAgent ? (
+        {!agent || !searchAgent || loading ? (
           <CircularProgress />
         ) : (
           <DataGrid

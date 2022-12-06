@@ -4,26 +4,29 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
-import { serviceCategories, serviceProviderApproved, serviceProviderByEmail } from "../../redux/serviceProviders/serviceProviderActions";
+import {
+  serviceCategories,
+  serviceProviderApproved,
+  serviceProviderByEmail,
+} from "../../redux/serviceProviders/serviceProviderActions";
 
 function SingleSerProvider() {
   const [formValue, setFormValue] = useState({
-  action: "APPROVED",
-  comments: "",
-  serviceProviderId: 0
-  })
+    action: "APPROVED",
+    comments: "",
+    serviceProviderId: 0,
+  });
 
   const dispatch = useDispatch();
   const params = useParams();
 
   const allServiceProvider = useSelector((state) => state.serviceProviders);
-  const singleservice = allServiceProvider.serviceProvider;
+  const singleservice = allServiceProvider?.serviceProvider;
 
   //  const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   // const serCategory = serviceProviderReducer.serviceCategories;
 
-  console.log({ allServiceProvider,singleservice }, "servicePro");
-
+  console.log({ allServiceProvider, singleservice }, "servicePro");
 
   useEffect(() => {
     if (singleservice) {
@@ -34,14 +37,11 @@ function SingleSerProvider() {
     }
   }, [singleservice]);
 
-  
-  const approveSerProvider =(act)=>{
-    const {comments, serviceProviderId } = formValue;
-    const action = act
+  const approveSerProvider = (act) => {
+    const { comments, serviceProviderId } = formValue;
+    const action = act;
     dispatch(serviceProviderApproved(action, comments, serviceProviderId));
-
-
-  }
+  };
 
   useEffect(() => {
     dispatch(serviceProviderByEmail(params.email));
@@ -61,16 +61,16 @@ function SingleSerProvider() {
           <div className="userShow">
             <div className="userShowTop">
               <img
-                src={singleservice.profilePhoto}
+                src={singleservice?.profilePhoto}
                 alt=""
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
                 <span className="userShowUsername">
-                  {singleservice.fullName}
+                  {singleservice?.fullName}
                 </span>
                 <span className="userShowUserTitle">
-                  00000{singleservice.id}
+                  00000{singleservice?.id}
                 </span>
               </div>
             </div>
@@ -79,25 +79,25 @@ function SingleSerProvider() {
               <div className="userShowInfo">
                 <span className="userShowIcon">Service Provider Type:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.serviceProviderDetail?.type}
+                  {singleservice?.serviceProviderDetail?.type}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon"> Status:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.serviceProviderDetail?.registrationStatus}
+                  {singleservice?.serviceProviderDetail?.registrationStatus}
                 </span>
                 <span className="userShowInfoTitle">
-                  {singleservice.serviceProviderDetail?.registrationStatus !==
+                  {singleservice?.serviceProviderDetail?.registrationStatus !==
                   "PENDING_VERIFICATION" ? null : (
                     <>
                       <button
-                      className="userAddButton"
-                      onClick={() => approveSerProvider('APPROVED')}
-                    >
-                      Approve
-                    </button>
-                    {/* <button
+                        className="userAddButton"
+                        onClick={() => approveSerProvider("APPROVED")}
+                      >
+                        Approve
+                      </button>
+                      {/* <button
                     className="userAddButton"
                     onClick={() => approveSerProvider('REJECTED')}
                   >
@@ -110,48 +110,52 @@ function SingleSerProvider() {
               <div className="userShowInfo">
                 <span className="userShowIcon"> Company:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.agentDetail?.company}
+                  {singleservice?.agentDetail?.company}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Description:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.serviceProviderDetail?.shortDescription}
+                  {singleservice?.serviceProviderDetail?.shortDescription}
                 </span>
               </div>
               <span className="userShowTitle">Contact Details</span>
               <div className="userShowInfo">
                 Phone
-                <span className="userShowInfoTitle">{singleservice.phone}</span>
+                <span className="userShowInfoTitle">
+                  {singleservice?.phone}
+                </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Email:</span>
 
-                <span className="userShowInfoTitle">{singleservice.email}</span>
+                <span className="userShowInfoTitle">
+                  {singleservice?.email}
+                </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Country:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.address?.country}
+                  {singleservice?.address?.country}
                 </span>
               </div>
               <span className="userShowTitle"> Service Provider Address</span>
               <div className="userShowInfo">
                 <span className="userShowIcon">House Address:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.address?.houseNoAddress}
+                  {singleservice?.address?.houseNoAddress}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">Local Govt Area:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.address?.lga}
+                  {singleservice?.address?.lga}
                 </span>
               </div>
               <div className="userShowInfo">
                 <span className="userShowIcon">State:</span>
                 <span className="userShowInfoTitle">
-                  {singleservice.address?.state}
+                  {singleservice?.address?.state}
                 </span>
               </div>
             </div>
@@ -159,30 +163,34 @@ function SingleSerProvider() {
           {/* {more} */}
           <div className="userUpdate">
             <span className="userShowTitle"> Service Provided:</span>
-            {!singleservice.serviceProviderDetail?.servicesProvided ? (
+            {!singleservice?.serviceProviderDetail?.servicesProvided ? (
               <h6>update your profile</h6>
             ) : (
               <div className="userShowInfo">
                 <span className="userShowInfoTitle">
                   <table className="widgetLgTable">
-                    <tr className="widgetLgTr">
-                      <th className="widgetLgTh">id</th>
-                      <th className="widgetLgTh"> Type</th>
-                      {/* <th className="widgetLgTh">Price Range</th> */}
-                      <th className="widgetLgTh">Yrs Of Experience</th>
-                    </tr>
-                    {singleservice.serviceProviderDetail?.servicesProvided.map(
-                      (itm) => (
-                        <tr className="widgetLgTr" key={itm.id}>
-                          <td className="widgetLgName">{itm.id}</td>
-                          <td className="widgetLgDate">{itm.serviceType}</td>
-                          {/* <td className="widgetLgAmount">{itm.priceRange}</td> */}
-                          <td className="widgetLgAmount">
-                            {itm.yearsOfExperience}
-                          </td>
-                        </tr>
-                      )
-                    )}
+                    <thead>
+                      <tr className="widgetLgTr">
+                        <th className="widgetLgTh">id</th>
+                        <th className="widgetLgTh"> Type</th>
+                        {/* <th className="widgetLgTh">Price Range</th> */}
+                        <th className="widgetLgTh">Yrs Of Experience</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {singleservice?.serviceProviderDetail?.servicesProvided.map(
+                        (itm) => (
+                          <tr className="widgetLgTr" key={itm.id}>
+                            <td className="widgetLgName">{itm.id}</td>
+                            <td className="widgetLgDate">{itm.serviceType}</td>
+                            {/* <td className="widgetLgAmount">{itm.priceRange}</td> */}
+                            <td className="widgetLgAmount">
+                              {itm.yearsOfExperience}
+                            </td>
+                          </tr>
+                        )
+                      )}
+                    </tbody>
                   </table>
                 </span>
               </div>
@@ -192,32 +200,36 @@ function SingleSerProvider() {
             <div className="userShowInfo">
               <span className="userShowInfoTitle">
                 <table className="widgetLgTable">
-                  <tr className="widgetLgTr">
-                    <th className="widgetLgTh">Name</th>
-                    <th className="widgetLgTh">Institution</th>
-                    <th className="widgetLgTh">Status</th>
-                    <th className="widgetLgTh">Documents</th>
-                  </tr>
-                  {singleservice.serviceProviderDetail?.certificates.map(
-                    (itm) => {
-                      return (
-                        <tr className="widgetLgTr" key={itm.id}>
-                          <td className="widgetLgName">{itm.name}</td>
-                          <td className="widgetLgDate">{itm.institution}</td>
-                          <td className="widgetLgAmount">{itm.status}</td>
-                          <td className="widgetLgUser">
-                            <a href={itm.imageLink} target="_blank">
-                              <img
-                                src={itm.imageLink}
-                                alt=""
-                                className="widgetLgImg"
-                              />
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    }
-                  )}
+                  <thead>
+                    <tr className="widgetLgTr">
+                      <th className="widgetLgTh">Name</th>
+                      <th className="widgetLgTh">Institution</th>
+                      <th className="widgetLgTh">Status</th>
+                      <th className="widgetLgTh">Documents</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {singleservice?.serviceProviderDetail?.certificates.map(
+                      (itm) => {
+                        return (
+                          <tr className="widgetLgTr" key={itm.id}>
+                            <td className="widgetLgName">{itm.name}</td>
+                            <td className="widgetLgDate">{itm.institution}</td>
+                            <td className="widgetLgAmount">{itm.status}</td>
+                            <td className="widgetLgUser">
+                              <a href={itm.imageLink} rel="noreferrer" target="_blank">
+                                <img
+                                  src={itm.imageLink}
+                                  alt=""
+                                  className="widgetLgImg"
+                                />
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      }
+                    )}
+                  </tbody>
                 </table>
               </span>
             </div>
@@ -225,32 +237,38 @@ function SingleSerProvider() {
             <div className="userShowInfo">
               <span className="userShowInfoTitle">
                 <table className="widgetLgTable">
-                  <tr className="widgetLgTr">
-                    <th className="widgetLgTh">Id type</th>
-                    <th className="widgetLgTh">Id Number</th>
-                    <th className="widgetLgTh">Status</th>
-                    <th className="widgetLgTh">Documents</th>
-                  </tr>
-                  {singleservice.serviceProviderDetail?.identifications.map(
-                    (itm) => {
-                      return (
-                        <tr className="widgetLgTr" key={itm.id}>
-                          <td className="widgetLgName">{itm.idType}</td>
-                          <td className="widgetLgDate">{itm.idNumber}</td>
-                          <td className="widgetLgAmount">{itm.entityStatus}</td>
-                          <td className="widgetLgUser">
-                            <a href={itm.imageLink} target="_blank">
-                              <img
-                                src={itm.imageLink}
-                                alt=""
-                                className="widgetLgImg"
-                              />
-                            </a>
-                          </td>
-                        </tr>
-                      );
-                    }
-                  )}
+                  <thead>
+                    <tr className="widgetLgTr">
+                      <th className="widgetLgTh">Id type</th>
+                      <th className="widgetLgTh">Id Number</th>
+                      <th className="widgetLgTh">Status</th>
+                      <th className="widgetLgTh">Documents</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {singleservice?.serviceProviderDetail?.identifications.map(
+                      (itm) => {
+                        return (
+                          <tr className="widgetLgTr" key={itm.id}>
+                            <td className="widgetLgName">{itm.idType}</td>
+                            <td className="widgetLgDate">{itm.idNumber}</td>
+                            <td className="widgetLgAmount">
+                              {itm.entityStatus}
+                            </td>
+                            <td className="widgetLgUser">
+                              <a href={itm.imageLink} rel="noreferrer" target="_blank">
+                                <img
+                                  src={itm.imageLink}
+                                  alt=""
+                                  className="widgetLgImg"
+                                />
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      }
+                    )}
+                  </tbody>
                 </table>
               </span>
             </div>
@@ -259,7 +277,7 @@ function SingleSerProvider() {
               <br />
               <div className="userShowTop">
                 <img
-                  src={singleservice.profilePhoto}
+                  src={singleservice?.profilePhoto}
                   alt=""
                   className="userShowImg"
                 />
@@ -273,4 +291,3 @@ function SingleSerProvider() {
 }
 
 export default SingleSerProvider;
-

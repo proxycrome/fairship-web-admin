@@ -14,7 +14,7 @@ export default function SerProApprovalReq() {
 
 
  const serviceProviderReducer = useSelector((state) => state.serviceProviders);
- const serProviderList = serviceProviderReducer.allServiceProviders.entities;
+ const serProviderList = serviceProviderReducer?.allServiceProviders?.entities;
 
 
   const showMore = () => {

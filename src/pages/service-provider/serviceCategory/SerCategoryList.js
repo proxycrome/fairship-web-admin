@@ -10,6 +10,7 @@ import {
   serviceCategories,
 } from "../../../redux/serviceProviders/serviceProviderActions";
 import CreateSerCategory from "./CreateSerCategory";
+import {Toaster} from "react-hot-toast";
 
 function SerCategoryList() {
   const [search, setSearch] = useState("");
@@ -17,7 +18,8 @@ function SerCategoryList() {
 
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   console.log(serviceProviderReducer)
-  const serCategory = serviceProviderReducer.serviceCategories;
+  const serCategory = serviceProviderReducer?.serviceCategories;
+  const loading = serviceProviderReducer?.loading;
 
   // console.log({ serviceProviderReducer, serCategory}, "service999");
 
@@ -60,6 +62,7 @@ function SerCategoryList() {
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="productList">
         <div className="search">
@@ -80,7 +83,7 @@ function SerCategoryList() {
           </button>
         </div>
 
-        {!searchSerCategory ? (
+        {!searchSerCategory || !serCategory || loading ? (
           <CircularProgress className="spinner" />
         ) : (
           <DataGrid

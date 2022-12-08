@@ -5,11 +5,11 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAdmin } from "../../redux/admins/adminActions";
-import { deleteSingleAgent } from "../../redux/agents/agentActions";
+import { deleteSingleAdmin, getAllAdmin } from "../../redux/admins/adminActions";
 import { CircularProgress } from "@material-ui/core";
 import { openAdminCategoryDialog } from "../../redux/admins/adminActions";
 import CreateStaffList from "./CreateStaffList";
+import { Toaster } from "react-hot-toast";
 
 export default function StaffList() {
   const [search, setSearch] = useState("");
@@ -32,8 +32,7 @@ export default function StaffList() {
 
   //! come back to it.....
   const handleDelete = (id) => {
-    console.log(id);
-    dispatch(deleteSingleAgent(id));
+    dispatch(deleteSingleAdmin(id));
   };
 
   const columns = [
@@ -98,6 +97,7 @@ export default function StaffList() {
 
   return (
     <div className="containerSide">
+      <Toaster />
       <Sidebar />
       <div className="productList">
         <div className="search">

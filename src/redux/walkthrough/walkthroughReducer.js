@@ -1,13 +1,18 @@
 import {
+  CLOSE_WALK_UPLOAD_DIALOG,
   GET_ALL_APARTMENT_TYPES,
   GET_ALL_APARTMENT_TYPES_ERROR,
   GET_ALL_APARTMENT_TYPES_SUCCESS,
   GET_WALK_VIDEO_PLANS,
   GET_WALK_VIDEO_PLANS_ERROR,
   GET_WALK_VIDEO_PLANS_SUCCESS,
+  OPEN_WALK_UPLOAD_DIALOG,
   UPDATE_WALK_VIDEO_FEE,
   UPDATE_WALK_VIDEO_FEE_ERROR,
   UPDATE_WALK_VIDEO_FEE_SUCCESS,
+  UPLOAD_VIDEO,
+  UPLOAD_VIDEO_ERROR,
+  UPLOAD_VIDEO_SUCCESS,
 } from "./walkthroughType";
 
 const initialState = {
@@ -18,6 +23,14 @@ const initialState = {
   apartmentTypesError: null,
   walkFeeMsg: null,
   walkFeeError: null,
+  walkVideo: {
+    props: {
+      open: false,
+    },
+    data: null,
+  },
+  walkVideoMsg: null,
+  walkVideoError: null,
 };
 
 const walkThroughReducer = (state = initialState, action) => {
@@ -25,6 +38,7 @@ const walkThroughReducer = (state = initialState, action) => {
     case GET_WALK_VIDEO_PLANS:
     case GET_ALL_APARTMENT_TYPES:
     case UPDATE_WALK_VIDEO_FEE:
+    case UPLOAD_VIDEO:
       state = {
         ...state,
         loading: action.payload,
@@ -82,6 +96,48 @@ const walkThroughReducer = (state = initialState, action) => {
         loading: false,
         walkFeeMsg: null,
         walkFeeError: action.payload,
+      };
+      break;
+
+    case OPEN_WALK_UPLOAD_DIALOG:
+      state = {
+        ...state,
+        walkVideo: {
+          props: {
+            open: true,
+          },
+          data: action.payload,
+        },
+      };
+      break;
+
+    case CLOSE_WALK_UPLOAD_DIALOG:
+      state = {
+        ...state,
+        walkVideo: {
+          props: {
+            open: false,
+          },
+          data: null,
+        },
+      };
+      break;
+
+    case UPLOAD_VIDEO_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        walkVideoMsg: action.payload,
+        walkVideoError: null,
+      };
+      break;
+
+    case UPLOAD_VIDEO_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        walkVideoMsg: null,
+        walkVideoError: action.payload,
       };
       break;
 

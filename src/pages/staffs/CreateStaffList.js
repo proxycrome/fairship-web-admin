@@ -74,6 +74,7 @@ function CreateStaffList() {
             name="email"
             value={formValue.email}
             onChange={handleChange}
+            required
           />
            <TextField
             // autoFocus

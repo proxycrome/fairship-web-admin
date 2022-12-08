@@ -10,6 +10,8 @@ import {
 } from "../../redux/property/propertyActions";
 import { Toaster } from "react-hot-toast";
 import "bootstrap/dist/css/bootstrap.css";
+import { openWalkUploadDialog } from "../../redux";
+import UploadWalkVideo from "./UploadWalkVideo";
 
 function SingleProperty() {
   const dispatch = useDispatch();
@@ -41,9 +43,13 @@ function SingleProperty() {
           <>
             <div className="userTitleContainer">
               <h1 className="userTitle">Property Details</h1>
-              {/* <Link to="/newUser">
-           <button className="userAddButton">Create</button>
-         </Link> */}
+              <button
+                className="userAddButton"
+                style={{ width: "300px" }}
+                onClick={() => dispatch(openWalkUploadDialog(singleProperty))}
+              >
+                Upload Walkthrough Video
+              </button>
             </div>
             <div className="userContainer">
               <div className="userShow">
@@ -190,7 +196,9 @@ function SingleProperty() {
                     UnApproved
                   </button>
                 ) : (
-                  <button className="userListEdit" disabled>Approved</button>
+                  <button className="userListEdit" disabled>
+                    Approved
+                  </button>
                 )}
               </div>
             </div>
@@ -224,7 +232,7 @@ function SingleProperty() {
           </>
         )}
       </div>
-      {/* <Outlet /> */}
+      <UploadWalkVideo />
     </div>
   );
 }

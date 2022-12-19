@@ -14,7 +14,7 @@ export default function FeaturedInfo() {
 
   //get the total of all registered agents
   const agentList = useSelector((state) => state.agents);
-  const agent = agentList?.allAgent?.entities;
+  const agent = agentList?.allAgent;
 
   //get the total of all registered property Ower
   const propertyOwersReducer = useSelector((state) => state.propertyOwers);

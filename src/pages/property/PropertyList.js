@@ -39,19 +39,30 @@ export default function PropertyList() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
-    { field: "title", headerName: "Title", width: 150 },
+    { 
+      field: "title", 
+      headerName: "Title", 
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div className="userListUser">
+            {`${params.row?.parentProperty?.title || ""} ${params.row?.title}`}
+          </div>
+        );
+      },
+    },
     {
       field: "propertyRef",
       headerName: "Property Ref",
       width: 200,
-      //   renderCell: (params) => {
-      //     return (
-      //       <div className="userListUser">
-      //         <img className="userListImg" src={params.row.profilePhoto} alt="" />
-      //         {`${params.row.lastName} ${params.row.firstName}`}
-      //       </div>
-      //     );
-      //   },
+        // renderCell: (params) => {
+        //   return (
+        //     <div className="userListUser">
+        //       <img className="userListImg" src={params.row.profilePhoto} alt="" />
+        //       {`${params.row.lastName} ${params.row.firstName}`}
+        //     </div>
+        //   );
+        // },
     },
     { field: "entityLevel", headerName: "Entity Level", width: 150 },
     {

@@ -81,10 +81,10 @@ export default function PmaFeeList() {
             onClick={() => dispatch(openAdminCategoryDialog())}
             style={{ width: "300px" }}
           >
-            Create PMA fee
+            Update Fees
           </button>
         </div>
-        {!pmaFees ? (
+        {!pmaFees || loading ? (
           <CircularProgress />
         ) : (
           <DataGrid

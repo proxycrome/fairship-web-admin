@@ -21,7 +21,7 @@ export default function StaffList() {
   const admin = adminReducer?.allAdmin?.entities;
   const loading = adminReducer?.loading;
 
-  //console.log
+  // console.log({admin});
   // console.log({ agentList, agent }, "allagent");
   // console.log(agent, 'data')
 
@@ -44,8 +44,8 @@ export default function StaffList() {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.profilePhoto} alt="" />
-            {params.row?.administrator === null
+            <img className="userListImg" src={params.row?.profilePhoto} alt="" />
+            {params.row?.administrator?.fullName === "null null"
               ? ""
               : params.row?.administrator?.fullName}
           </div>

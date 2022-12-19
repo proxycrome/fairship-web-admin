@@ -187,6 +187,93 @@ function SingleProperty() {
                   </span>
                 </div>
 
+                {singleProperty?.entityLevel === "COLLECTIVE_ENTITY" ? (
+                  <>
+                    <span className="userShowTitle">Unit Properties</span>
+                    <div className="userShowInfo">
+                      <span className="userShowInfoTitle">
+                        <table className="widgetLgTable">
+                          <thead>
+                            <tr className="widgetLgTr">
+                              <th className="widgetLgTh">Title</th>
+                              <th className="widgetLgTh">PropertyRef</th>
+                              <th className="widgetLgTh">Entity Level</th>
+                              <th className="widgetLgTh">Type</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {singleProperty?.unitProperties?.map((itm) => {
+                              return (
+                                <tr className="widgetLgTr" key={itm.id}>
+                                  <td className="widgetLgName">
+                                    {itm?.parentProperty?.title} {itm?.title}
+                                  </td>
+                                  <td className="widgetLgName">
+                                    {itm.propertyRef}
+                                  </td>
+                                  <td className="widgetLgDate">
+                                    {itm.entityLevel}
+                                  </td>
+                                  <td className="widgetLgAmount">{itm.type}</td>
+                                  <td className="widgetLgUser">
+                                    <Link to={`/property-list/${itm.id}`}>
+                                      <h5>View</h5>
+                                    </Link>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </span>
+                    </div>
+                  </>
+                ) : singleProperty?.entityLevel === "UNIT_ENTITY" ? (
+                  <>
+                    <span className="userShowTitle">Parent Property</span>
+                    <div className="userShowInfo">
+                      <span className="userShowInfoTitle">
+                        <table className="widgetLgTable">
+                          <thead>
+                            <tr className="widgetLgTr">
+                              <th className="widgetLgTh">Title</th>
+                              <th className="widgetLgTh">PropertyRef</th>
+                              <th className="widgetLgTh">Entity Level</th>
+                              <th className="widgetLgTh">Type</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              className="widgetLgTr"
+                              key={singleProperty?.parentProperty?.id}
+                            >
+                              <td className="widgetLgName">
+                                {singleProperty?.parentProperty?.title}
+                              </td>
+                              <td className="widgetLgName">
+                                {singleProperty?.parentProperty?.propertyRef}
+                              </td>
+                              <td className="widgetLgDate">
+                                {singleProperty?.parentProperty?.entityLevel}
+                              </td>
+                              <td className="widgetLgAmount">
+                                {singleProperty?.parentProperty?.type}
+                              </td>
+                              <td className="widgetLgUser">
+                                <Link
+                                  to={`/property-list/${singleProperty?.parentProperty?.id}`}
+                                >
+                                  <h5>View</h5>
+                                </Link>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+                    </div>
+                  </>
+                ) : null}
+
                 {singleProperty?.status !== "ACTIVE" ? (
                   <button
                     className="userListEdit"
@@ -218,7 +305,7 @@ function SingleProperty() {
                                 rel="noopener noreferrer"
                               >
                                 <CardBody className="">
-                                  <h6 className="card-title">{item.name}</h6>
+                                  <h6 className="card-title">{item.name === "OTHERS" ? item.title : item.name}</h6>
                                 </CardBody>
                               </a>
                             </Card>

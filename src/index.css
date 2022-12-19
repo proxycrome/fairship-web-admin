@@ -439,6 +439,14 @@ a:hover{
 .widgetLgTable{
   width: 100%;
   border-spacing: 20px;
+  border-color: #999;
+  border-collapse: collapse;
+}
+
+th, td{
+  width: auto;
+  height: auto;
+  padding: 10px;
 }
 
 .widgetLgTh{

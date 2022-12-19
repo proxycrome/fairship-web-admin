@@ -12,6 +12,7 @@ export default function SingleTenant() {
 
   const allTenants = useSelector((state) => state.tenants);
   const singleTenant = allTenants?.tenant;
+  const tenantProperties = allTenants?.property;
 
   console.log(singleTenant, "tenant400");
 
@@ -20,8 +21,10 @@ export default function SingleTenant() {
   }, [params]);
 
   useEffect(() => {
-    dispatch(getTenantProperty(singleTenant?.id));
-  }, []);
+    if(singleTenant){
+      dispatch(getTenantProperty(singleTenant?.id));
+    }   
+  }, [singleTenant]);
 
   return (
     <div className="containerSide">
@@ -117,13 +120,45 @@ export default function SingleTenant() {
                 {singleTenant?.address?.state}
               </span>
             </div>
-            <span className="userShowTitle">Other info </span>
+            {/* <span className="userShowTitle">Other info </span> */}
             {/* <div className="userShowInfo">
               <span className="userShowIcon">serviceProviderDetail:</span>
               <span className="userShowInfoTitle">
                 {singleTenant.serviceProviderDetail}
               </span>
             </div> */}
+            <span className="userShowTitle">Properties</span>
+            <div className="userShowInfo">
+              <span className="userShowInfoTitle">
+                <table className="widgetLgTable">
+                  <thead>
+                    <tr className="widgetLgTr">
+                      <th className="widgetLgTh">Title</th>
+                      <th className="widgetLgTh">PropertyRef</th>
+                      <th className="widgetLgTh">Entity Level</th>
+                      <th className="widgetLgTh">Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tenantProperties?.map((itm) => {
+                      return (
+                        <tr className="widgetLgTr" key={itm.id}>
+                          <td className="widgetLgName">{itm?.parentProperty?.title} {itm?.title}</td>
+                          <td className="widgetLgName">{itm.propertyRef}</td>
+                          <td className="widgetLgDate">{itm.entityLevel}</td>
+                          <td className="widgetLgAmount">{itm.type}</td>
+                          <td className="widgetLgUser">
+                            <Link to={`/property-list/${itm.id}`}>
+                              <h5>View</h5>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </span>
+            </div>
             <div className="userShowInfo">
               {/* <LocationSearching className="userShowIcon" /> */}
               <div className="userShowIcon">signature:</div>

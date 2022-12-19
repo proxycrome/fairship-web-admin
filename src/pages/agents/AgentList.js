@@ -16,7 +16,7 @@ export default function AgentList() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const agentList = useSelector((state) => state.agents);
-  const agent = agentList?.allAgent?.entities;
+  const agent = agentList?.allAgent
   const loading = agentList?.loading;
 
   //console.log
@@ -63,7 +63,6 @@ export default function AgentList() {
         // console.log(params)
         return (
           <div className="productListItem">
-            {/* <img className="productListImg" src={params.row.img} alt="" /> */}
             {params.row.address?.state}
           </div>
         );
@@ -72,6 +71,11 @@ export default function AgentList() {
     {
       field: "phone",
       headerName: "Phone",
+      width: 160,
+    },
+    {
+      field: "status",
+      headerName: "Status",
       width: 160,
     },
     {

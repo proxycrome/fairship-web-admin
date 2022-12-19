@@ -69,23 +69,20 @@ export function getTenantProperty(id) {
   return (dispatch) => {
     dispatch({ type: GET_TENANT_PROPERTY, payload: true });
     authFetch
-      .get(`/properties`)
+      .get(`/properties?limit=1000000000`)
       .then((response) => {
         const data = response.data;
+        const result = data?.entities?.filter(item => item?.rentedBy?.id === id);
+        console.log({result});
         dispatch({
           type: GET_TENANT_PROPERTY_SUCCESS,
-          payload: data,
+          payload: result,
         });
         console.log(data, "4444");
-        const result = data.filter(findProperty);
-
-        function findProperty(rentedBy) {
-          return rentedBy === id;
-          console.log(result);
-        }
+        
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        console.log(error);
         dispatch({
           type: GET_TENANT_PROPERTY_ERROR,
           payload: error?.response?.data?.message,

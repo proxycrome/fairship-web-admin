@@ -26,7 +26,7 @@ export const getAllAgent = () => {
   return (dispatch) => {
     dispatch({ type: GET_ALL_AGENT, payload: true });
     authFetch
-      .get("/auth/users/all?role=AGENT&limit=100")
+      .get("/auth/admin/create-agents/all?status=ACTIVE")
       .then((response) => {
         // console.log(response, 'res234')
         const data = response.data;

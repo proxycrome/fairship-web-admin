@@ -11,7 +11,7 @@ export default function WidgetSm() {
 
   //useSelector
   const agentList = useSelector((state) => state.agents);
-  const agent = agentList?.allAgent?.entities;
+  const agent = agentList?.allAgent;
   // const agentLength = agent.length;
 
   const showMore = () => {

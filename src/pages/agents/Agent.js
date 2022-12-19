@@ -135,7 +135,7 @@ export default function Agent() {
                     {singleAgent?.properties?.map((itm) => {
                       return (
                         <tr className="widgetLgTr" key={itm.id}>
-                          <td className="widgetLgName">{itm.title}</td>
+                          <td className="widgetLgName">{itm?.parentProperty?.title} {itm?.title}</td>
                           <td className="widgetLgName">{itm.propertyRef}</td>
                           <td className="widgetLgDate">{itm.entityLevel}</td>
                           <td className="widgetLgAmount">{itm.type}</td>

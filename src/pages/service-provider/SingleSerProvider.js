@@ -26,7 +26,7 @@ function SingleSerProvider() {
   //  const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   // const serCategory = serviceProviderReducer.serviceCategories;
 
-  console.log({ allServiceProvider, singleservice }, "servicePro");
+  // console.log({ allServiceProvider, singleservice }, "servicePro");
 
   useEffect(() => {
     if (singleservice) {

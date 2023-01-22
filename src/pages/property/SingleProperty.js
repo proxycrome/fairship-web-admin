@@ -22,7 +22,7 @@ function SingleProperty() {
   const singleProperty = propertyList?.viewProperty;
   const loading = propertyList?.loading;
 
-  console.log(singleProperty, "singleProperty");
+  // console.log(singleProperty, "singleProperty");
 
   useEffect(() => {
     dispatch(singlePropertyById(params.id));
@@ -113,7 +113,8 @@ function SingleProperty() {
                     <span className="userShowIcon">Period:</span>
 
                     <span className="userShowInfoTitle">
-                      {singleProperty?.periodInMonths} months
+                      {singleProperty?.periodInMonths}{" "}
+                      {singleProperty?.periodInMonths ? "months" : ""}
                     </span>
                   </div>
                   <div className="userShowInfo">
@@ -146,13 +147,43 @@ function SingleProperty() {
                   </span>
                 </div>
                 <span className="userShowTitle">Other info </span>
+                {singleProperty?.feature === "RENT" ? (
+                  <div className="userShowInfo">
+                    <span className="userShowIcon">rented By:</span>
+                    <span className="userShowInfoTitle">
+                      {singleProperty?.rentedBy?.firstName}
+                    </span>
+                    <span className="userShowInfoTitle">
+                      {singleProperty?.rentedBy?.lastName}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="userShowInfo">
+                    <span className="userShowIcon">Purchased By:</span>
+                    <span className="userShowInfoTitle">
+                      {singleProperty?.purchasedBy?.firstName}
+                    </span>
+                    <span className="userShowInfoTitle">
+                      {singleProperty?.purchasedBy?.lastName}
+                    </span>
+                  </div>
+                )}
                 <div className="userShowInfo">
-                  <span className="userShowIcon">rented By:</span>
+                  <span className="userShowIcon">Agent:</span>
                   <span className="userShowInfoTitle">
-                    {singleProperty?.rentedBy?.firstName}
+                    {singleProperty?.agentDetail?.firstName}
                   </span>
                   <span className="userShowInfoTitle">
-                    {singleProperty?.rentedBy?.lastName}
+                    {singleProperty?.agentDetail?.lastName}
+                  </span>
+                </div>
+                <div className="userShowInfo">
+                  <span className="userShowIcon">Published By:</span>
+                  <span className="userShowInfoTitle">
+                    {singleProperty?.publishedBy?.firstName}
+                  </span>
+                  <span className="userShowInfoTitle">
+                    {singleProperty?.publishedBy?.lastName}
                   </span>
                 </div>
                 <div className="userShowInfo">
@@ -184,6 +215,19 @@ function SingleProperty() {
                   <div className="userShowIcon">Unit No:</div>
                   <span className="userShowInfoTitle">
                     {singleProperty?.unitNo}
+                  </span>
+                </div>
+
+                <div className="userShowInfo">
+                  <div className="userShowIcon">Walkthrough Video:</div>
+                  <span className="userShowInfoTitle">
+                    <a
+                      href={singleProperty?.video?.videoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {singleProperty?.video?.videoUrl}
+                    </a>
                   </span>
                 </div>
 
@@ -305,7 +349,11 @@ function SingleProperty() {
                                 rel="noopener noreferrer"
                               >
                                 <CardBody className="">
-                                  <h6 className="card-title">{item.name === "OTHERS" ? item.title : item.name}</h6>
+                                  <h6 className="card-title">
+                                    {item.name === "OTHERS"
+                                      ? item?.title
+                                      : item.name}
+                                  </h6>
                                 </CardBody>
                               </a>
                             </Card>

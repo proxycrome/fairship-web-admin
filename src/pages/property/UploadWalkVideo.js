@@ -20,7 +20,7 @@ function UploadWalkVideo() {
   } = useSelector((state) => state.walkthrough);
   //   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   //   const serCategory = serviceProviderReducer.serviceCategories;
-  console.log(open);
+  // console.log(open);
 
   const [formValue, setFormValue] = useState({
     description: "",
@@ -36,7 +36,7 @@ function UploadWalkVideo() {
     });
   };
 
-  console.log(formValue, "5689");
+  // console.log(formValue, "5689");
 
   const handleSubmit = (e) => {
     e.preventDefault();

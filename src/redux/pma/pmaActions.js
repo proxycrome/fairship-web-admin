@@ -26,7 +26,7 @@ export const getPmaFees = (feeType) => {
         });
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_PMA_FEES_ERROR,
           payload: error?.response?.data?.message,
@@ -52,7 +52,7 @@ export const updatePmaFees = (formData) => {
           toast.success(data.message, { position: "top-right" });
         })
         .catch((error) => {
-          console.log(error?.response?.data?.message);
+          // console.log(error?.response?.data?.message);
           dispatch({
             type: UPDATE_PMA_FEES_ERROR,
             payload: error?.response?.data?.message,

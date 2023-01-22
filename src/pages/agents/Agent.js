@@ -22,7 +22,7 @@ export default function Agent() {
 
   const allAgents = useSelector((state) => state.agents);
   const singleAgent = allAgents.agent;
-  console.log({ singleAgent, allAgents }, "singleAgent");
+  // console.log({ singleAgent, allAgents }, "singleAgent");
 
   useEffect(() => {
     dispatch(getAgentDetailByEmail(params.email));

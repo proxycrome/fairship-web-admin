@@ -17,7 +17,7 @@ export const getPropertyList = () => {
     dispatch({ type: GET_ALL_PROPERTIES, payload: true });
     authFetch
       // .get(`/auth/properties?entityLevel=${property}&limit=100`)
-      .get("/auth/admin/properties?limit=1000")
+      .get("/auth/admin/properties?limit=1000000")
       .then((response) => {
         const data = response.data;
         dispatch({
@@ -28,7 +28,7 @@ export const getPropertyList = () => {
         // console.log(data, 'property')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_PROPERTIES_ERROR,
           payload: error?.response?.data?.message,
@@ -95,10 +95,10 @@ export function singlePropertyById(id) {
           payload: data,
         });
         // localStorage.getItem("token", data.token);
-        console.log(data, "4444");
+        // console.log(data, "4444");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: VIEW_SINGLE_PROPERTY_SUCCESS,
           payload: error?.response?.data?.message,
@@ -108,7 +108,7 @@ export function singlePropertyById(id) {
 }
 
 export const propertyapproval = (id) => {
-  console.log(id);
+  // console.log(id);
   return (dispatch) => {
     dispatch({ type: APPROVE_PROPERTIES, payload: true });
     authFetch
@@ -127,7 +127,7 @@ export const propertyapproval = (id) => {
         // console.log(data, 'property')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: APPROVE_PROPERTIES_ERROR,
           payload: error?.response?.data?.message,

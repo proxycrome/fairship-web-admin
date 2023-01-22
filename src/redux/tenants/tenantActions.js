@@ -32,7 +32,7 @@ export const getTenantList = () => {
         //   console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_TENANT_ERROR,
           payload: error?.response?.data?.message,
@@ -56,7 +56,7 @@ export function getTenantDetailsByEmail(email) {
         //  console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_SINGLE_TENANT_ERROR,
           payload: error?.response?.data?.message,
@@ -73,16 +73,16 @@ export function getTenantProperty(id) {
       .then((response) => {
         const data = response.data;
         const result = data?.entities?.filter(item => item?.rentedBy?.id === id);
-        console.log({result});
+        // console.log({result});
         dispatch({
           type: GET_TENANT_PROPERTY_SUCCESS,
           payload: result,
         });
-        console.log(data, "4444");
+        // console.log(data, "4444");
         
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({
           type: GET_TENANT_PROPERTY_ERROR,
           payload: error?.response?.data?.message,
@@ -108,7 +108,7 @@ export function deleteSingleTenant(userId) {
         toast.success(data.message, {position: "top-right"})
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: DELETE_SINGLE_TENANT_ERROR,
           payload: error?.response?.data?.message,

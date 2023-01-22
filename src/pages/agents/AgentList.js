@@ -20,7 +20,7 @@ export default function AgentList() {
   const loading = agentList?.loading;
 
   //console.log
-  console.log({ agentList, agent }, "allagent");
+  // console.log({ agentList, agent }, "allagent");
   // console.log(agent, 'data')
 
   //getAllAgent

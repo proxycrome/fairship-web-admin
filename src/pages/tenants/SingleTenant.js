@@ -14,7 +14,7 @@ export default function SingleTenant() {
   const singleTenant = allTenants?.tenant;
   const tenantProperties = allTenants?.property;
 
-  console.log(singleTenant, "tenant400");
+  // console.log(singleTenant, "tenant400");
 
   useEffect(() => {
     dispatch(getTenantDetailsByEmail(params.email));

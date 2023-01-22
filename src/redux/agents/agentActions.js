@@ -90,7 +90,7 @@ export function deleteSingleAgent(userId) {
         toast.success(response.data.message, {position: "top-right"})
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: DELETE_SINGLE_AGENT_ERROR,
           payload: error?.response?.data?.message,

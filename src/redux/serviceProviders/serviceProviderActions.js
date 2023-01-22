@@ -54,7 +54,7 @@ export const getServiceProviderList = () => {
         // console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_SERVICE_PROVIDER_ERROR,
           payload: error?.response?.data?.message,
@@ -80,7 +80,7 @@ export function serviceProviderByEmail(email) {
         //  console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_SINGLE_SERVICE_PROVIDER_ERROR,
           payload: error?.response?.data?.message,
@@ -97,7 +97,7 @@ export function deleteServiceProvider(userId) {
       .then((response) => {
         // console.log(response, 'sunkanmi')
         const data = response.data;
-        console.log(data, "123");
+        // console.log(data, "123");
         dispatch({
           type: DELETE_SINGLE_SERVICE_PROVIDER_SUCCESS,
           payload: data,
@@ -106,7 +106,7 @@ export function deleteServiceProvider(userId) {
         toast.success(data.message, { position: "top-right" });
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: DELETE_SINGLE_SERVICE_PROVIDER_ERROR,
           payload: error?.response?.data?.message,
@@ -132,7 +132,7 @@ export function getAllServiceType() {
         // console.log(data, "4444");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_SERVICE_TYPE_ERROR,
           payload: error?.response?.data?.message,
@@ -164,7 +164,7 @@ export function addSerCategory(id, name) {
         // console.log(data, "222");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: ADD_SERVICE_CATEGORY_ERROR,
           payload: error?.response?.data?.message,
@@ -181,7 +181,7 @@ export function addSerType(formData) {
     authFetch
       .post("/auth/admin/services", formData)
       .then((response) => {
-        console.log(response, "addservice");
+        // console.log(response, "addservice");
         const data = response.data;
         dispatch({
           type: ADD_SERVICE_CATEGORY_SUCCESS,
@@ -194,7 +194,7 @@ export function addSerType(formData) {
         // console.log(resp, "222");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: ADD_SERVICE_CATEGORY_ERROR,
           payload: error?.response?.data?.message,
@@ -207,12 +207,12 @@ export function addSerType(formData) {
 //edit service type
 export function editSerType(formData) {
   return (dispatch) => {
-    console.log(formData?.id);
+    // console.log(formData?.id);
     dispatch({ type: EDIT_SERVICE_TYPE, payload: true });
     authFetch
       .put(`/auth/admin/services/${formData?.id}`, formData)
       .then((response) => {
-        console.log(response, "addservice");
+        // console.log(response, "addservice");
         const data = response.data;
         dispatch({
           type: EDIT_SERVICE_TYPE_SUCCESS,
@@ -225,7 +225,7 @@ export function editSerType(formData) {
         // console.log(resp, "222");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: EDIT_SERVICE_TYPE_ERROR,
           payload: error?.response?.data?.message,
@@ -237,13 +237,13 @@ export function editSerType(formData) {
 
 //approve service provider
 export function serviceProviderApproved(action, comments, serviceProviderId) {
-  const sp = {
-    action,
-    comments,
-    serviceProviderId,
-  };
+  // const sp = {
+  //   action,
+  //   comments,
+  //   serviceProviderId,
+  // };
 
-  console.log(sp);
+  // console.log(sp);
   return (dispatch) => {
     dispatch({ type: APPROVED_SERVICE_PROVIDER, payload: true });
     authFetch
@@ -253,7 +253,7 @@ export function serviceProviderApproved(action, comments, serviceProviderId) {
         serviceProviderId,
       })
       .then((response) => {
-        console.log(response, "APPROVED");
+        // console.log(response, "APPROVED");
         const data = response.data;
         dispatch({
           type: APPROVED_SERVICE_PROVIDER_SUCCESS,
@@ -264,7 +264,7 @@ export function serviceProviderApproved(action, comments, serviceProviderId) {
         // window.location.reload();
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: APPROVED_SERVICE_PROVIDER_ERROR,
           payload: error?.response?.data?.message,
@@ -290,7 +290,7 @@ export function serviceCategories() {
         // console.log(data, "Category");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_SERVICE_CATEGORY_ERROR,
           payload: error?.response?.data?.message,
@@ -301,14 +301,14 @@ export function serviceCategories() {
 
 export function deleteServiceType(id) {
   return (dispatch) => {
-    console.log(id);
+    // console.log(id);
     dispatch({ type: DELETE_SERVICE_TYPE, payload: true });
     authFetch
       .delete(`/auth/admin/services/${id}`)
       .then((response) => {
         // console.log(response, 'sunkanmi')
         const data = response.data;
-        console.log(data, "123");
+        // console.log(data, "123");
         dispatch({
           type: DELETE_SERVICE_TYPE_SUCCESS,
           payload: data,
@@ -317,7 +317,7 @@ export function deleteServiceType(id) {
         toast.success(data.message, { position: "top-right" });
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: DELETE_SERVICE_TYPE_ERROR,
           payload: error?.response?.data?.message,

@@ -19,9 +19,9 @@ function SinglePropertyOwner() {
   const allPropertyOwers = useSelector((state) => state.propertyOwers);
   const singlePropertOwer = allPropertyOwers?.propertyOwer;
 
-  console.log(singlePropertOwer, "singlePropertOwer");
+  // console.log(singlePropertOwer, "singlePropertOwer");
 
-  console.log({ allPropertyOwers, singlePropertOwer }, "propertyOwers");
+  // console.log({ allPropertyOwers, singlePropertOwer }, "propertyOwers");
 
   useEffect(() => {
     dispatch(singleOwerDetailsByEmail(params.email));

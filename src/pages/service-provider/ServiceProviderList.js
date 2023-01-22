@@ -26,13 +26,13 @@ function ServiceProviderList({open}) {
   // );
 
   // local states
-  console.log({ serviceProviderReducer, serProviderList }, "service");
+  // console.log({ serviceProviderReducer, serProviderList }, "service");
 
   useEffect(() => {
     dispatch(getServiceProviderList());
   }, [dispatch]);
 
-  console.log(serProviderList);
+  // console.log(serProviderList);
 
   // !come back to this...
   const handleDelete = (id) => {

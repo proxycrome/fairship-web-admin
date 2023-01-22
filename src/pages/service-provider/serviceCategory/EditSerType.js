@@ -21,7 +21,7 @@ function EditSerType() {
   //   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   //   const serCategory = serviceProviderReducer.serviceCategories;
 
-  console.log({ editServiceType });
+  // console.log({ editServiceType });
 
   const [formValue, setFormValue] = useState({
     id: null,
@@ -29,7 +29,7 @@ function EditSerType() {
     status: "ACTIVE",
   });
 
-  console.log(formValue, "5689");
+  // console.log(formValue, "5689");
 
   //   useEffect(() => {
   //     dispatch(getServiceProviderList());

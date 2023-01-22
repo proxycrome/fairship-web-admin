@@ -42,7 +42,6 @@ authFetch.interceptors.response.use(
 
 // authFetch.interceptors.request.use(
 //   (config) => {
-//     console.log(config, "got response");
 //     const token = localStorage.getItem("token");
 //     const auth = token ? `Bearer ${token}` : "";
 //     config.headers.common["Authorization"] = auth;
@@ -52,7 +51,6 @@ authFetch.interceptors.response.use(
 // );
 //   authFetch.interceptors.response.use(
 //     (response) => {
-//         console.log("got response")
 //       response.headers.common[authorization] = `Bearer ${accessToken}`;
 //       return request;
 //     },

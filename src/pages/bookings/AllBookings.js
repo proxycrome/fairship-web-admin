@@ -17,7 +17,7 @@ function AllBookings() {
   // const [data, setData] = useState(productRows);
 
   //console.log
-  console.log({ bookingList, bookings }, "bookingReducer");
+  // console.log({ bookingList, bookings }, "bookingReducer");
 
   //dispatch get all Agent
   useEffect(() => {

@@ -16,7 +16,7 @@ export default function StaffList() {
   const dispatch = useDispatch();
 
   const adminReducer = useSelector((state) => state.admin);
-  console.log(adminReducer);
+  // console.log(adminReducer);
 
   const admin = adminReducer?.allAdmin?.entities;
   const loading = adminReducer?.loading;

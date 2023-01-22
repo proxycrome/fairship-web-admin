@@ -28,7 +28,7 @@ function SerTypeList() {
   //  const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.serviceCategories;
 
-  console.log({ serTypeList, serCategory }, "service");
+  // console.log({ serTypeList, serCategory }, "service");
 
   //!coming back to this...
   //   const handleDelete = (id) => {

@@ -38,7 +38,7 @@ export const getWalkthroughList = () => {
         //   console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_WALK_VIDEO_PLANS_ERROR,
           payload: error?.response?.data?.message,
@@ -66,7 +66,7 @@ export const getAllApartmentTypes = () => {
         //   console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_APARTMENT_TYPES_ERROR,
           payload: error?.response?.data?.message,
@@ -76,7 +76,7 @@ export const getAllApartmentTypes = () => {
 };
 
 export const updateWalkVideoFee = (formData) => {
-    console.log(formData)
+    // console.log(formData)
   return (dispatch) => {
     dispatch({
       type: UPDATE_WALK_VIDEO_FEE,
@@ -94,7 +94,7 @@ export const updateWalkVideoFee = (formData) => {
         dispatch(getWalkthroughList());
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: UPDATE_WALK_VIDEO_FEE_ERROR, 
           payload: error?.response?.data?.message,
@@ -124,7 +124,7 @@ export function uploadWalkVideo(formData) {
     authFetch
       .post("/auth/admin/videos", formData)
       .then((response) => {
-        console.log(response, "addservice");
+        // console.log(response, "addservice");
         const data = response.data;
         dispatch({
           type: UPLOAD_VIDEO_SUCCESS,
@@ -137,7 +137,7 @@ export function uploadWalkVideo(formData) {
         // console.log(resp, "222");
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: UPLOAD_VIDEO_ERROR,
           payload: error?.response?.data?.message,

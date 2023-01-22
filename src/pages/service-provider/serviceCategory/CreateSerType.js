@@ -36,7 +36,7 @@ function CreateSerType() {
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.serviceCategories;
 
-console.log(formValue, '5689');
+// console.log(formValue, '5689');
 
 
   useEffect(() => {

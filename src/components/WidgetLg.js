@@ -17,7 +17,7 @@ export default function WidgetLg() {
   const adminList = useSelector((state) => state.admin);
   const admin = adminList.allAdmin.entities;
 
-  console.log(admin, 'admin')
+  // console.log(admin, 'admin')
   const showMore = () => {
     setItemToShow(admin.length);
   };
@@ -50,7 +50,7 @@ export default function WidgetLg() {
     );
   });
 
-  console.log(admin)
+  // console.log(admin)
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">List of Staffs</h3>

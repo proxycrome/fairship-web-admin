@@ -30,7 +30,7 @@ export const getPropertyOwersList = () => {
         // console.log(data, 'propertyData')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_PROPERTYOWERS_ERROR,
           payload: error?.response?.data?.message,
@@ -56,7 +56,7 @@ export function singleOwerDetailsByEmail(email) {
         //  console.log(data, '4444')
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_SINGLE_PROPERTYOWER_ERROR,
           payload: error?.response?.data?.message,
@@ -82,7 +82,7 @@ export function deleteSingleOwner(userId) {
         toast.success(data.message, {position: "top-right"})
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: DELETE_SINGLE_PROPERTYOWER_ERROR,
           payload: error?.response?.data?.message,

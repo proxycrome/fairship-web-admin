@@ -20,7 +20,7 @@ export const appointmentBookingList = () => {
         // console.log(data, 'dataBooking')
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
       });
   };
 };

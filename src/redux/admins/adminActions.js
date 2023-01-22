@@ -29,7 +29,7 @@ export const getAllAdmin = () => {
         });
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: GET_ALL_ADMIN_ERROR,
           payload: error?.response?.data?.message,
@@ -40,7 +40,6 @@ export const getAllAdmin = () => {
 
 ///opening modal of Add creation
 export function openAdminCategoryDialog() {
-  console.log("sodiq");
   return {
     type: OPEN_ADMIN_DIALOG,
     // payload
@@ -57,7 +56,7 @@ export function closeAdminCategoryDialog() {
 
 //add Admin
 export function addNewAdmin(email, fullName, password, phone, role) {
-  console.log(email, fullName, password, phone, role);
+  // console.log(email, fullName, password, phone, role);
   return (dispatch) => {
     dispatch({ type: ADD_NEW_ADMIN, payload: true });
     authFetch
@@ -70,7 +69,7 @@ export function addNewAdmin(email, fullName, password, phone, role) {
       })
       .then((response) => {
         const data = response.data;
-        console.log(data);
+        // console.log(data);
         dispatch({
           type: ADD_NEW_ADMIN_SUCCESS,
           payload: data,
@@ -80,7 +79,7 @@ export function addNewAdmin(email, fullName, password, phone, role) {
         toast.success(data.message, { position: "top-right" });
       })
       .catch((error) => {
-        console.log(error?.response?.data?.message);
+        // console.log(error?.response?.data?.message);
         dispatch({
           type: ADD_NEW_ADMIN_ERROR,
           payload: error?.response?.data?.message,

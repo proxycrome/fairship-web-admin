@@ -23,8 +23,6 @@ function CreateSerCategory() {
   const serviceProviderReducer = useSelector((state) => state.serviceProviders);
   const serCategory = serviceProviderReducer.createServiceCategory;
 
-  console.log()
-
   // console.log({ serviceProviderReducer }, "servicecategory");
 
   const handleChange = (e) => {
@@ -40,7 +38,7 @@ function CreateSerCategory() {
     dispatch(addSerCategory(id, name));
     closeComposeDialog();
 
-    console.log(formValue, "value");
+    // console.log(formValue, "value");
   };
 
   function closeComposeDialog() {

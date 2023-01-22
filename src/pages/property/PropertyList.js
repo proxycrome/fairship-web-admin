@@ -140,11 +140,10 @@ export default function PropertyList() {
     return (
       item.propertyRef.toLowerCase().includes(search.toLowerCase()) ||
       item.entityLevel.toLowerCase().includes(search.toLowerCase()) ||
-      item.status.toLowerCase().includes(search.includes().toLowerCase())
+      item.status.toLowerCase().includes(search.toLowerCase()) ||
+      item.title.toLowerCase().includes(search.toLowerCase())
     );
   });
-
-  // console.log(searchProperty.filter((t)=>t.status === "ACTIVE"? "approved":"unapproved"), "searchProperty");
 
  
   return (

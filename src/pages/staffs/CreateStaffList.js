@@ -22,7 +22,7 @@ function CreateStaffList() {
   const dispatch = useDispatch();
 
   const adminReducer = useSelector((state) => state.admin);
-  console.log(adminReducer)
+  // console.log(adminReducer)
   const admincate = adminReducer.createAdmin;
 
   
@@ -39,7 +39,7 @@ function CreateStaffList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValue)
+    // console.log(formValue)
     const { email, fullName, password, phone, role } = formValue;
     dispatch(addNewAdmin(email, fullName, password, phone, role));
     closeAdmins();

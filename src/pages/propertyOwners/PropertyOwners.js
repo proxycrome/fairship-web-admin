@@ -25,7 +25,7 @@ function PropertOwners() {
 
   //define states and console.log
   // const [data, setData] = useState(propertyOwersList);
-  console.log({ propertyOwersList }, "propertyower234");
+  // console.log({ propertyOwersList }, "propertyower234");
 
   useEffect(() => {
     dispatch(getPropertyOwersList());

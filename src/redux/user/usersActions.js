@@ -52,7 +52,7 @@ export const loginFailture = (errors) => {
         //  let navigate = useNavigate();
         //  console.log(response, "responsUser");
          const data = response.data;
-         console.log(data)
+        //  console.log(data)
         //  console.log(response)
          dispatch(loginSuccess(data));
         localStorage.setItem("token", data.token);
@@ -72,7 +72,7 @@ export const loginFailture = (errors) => {
         //   // navigate("/home");
         //   console.log('user unauthorized')
         // }
-         console.log(error.message);
+        //  console.log(error.message);
          alert('incorrect Login details')
        });
    };

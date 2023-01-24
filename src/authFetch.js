@@ -1,4 +1,5 @@
 import axios from "axios";
+import domain from "./domain";
 
 // const accessToken =
 //   "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlLnYuZXplb253dWthQGdtYWlsLmNvbSIsInNjb3BlcyI6IlBST1BFUlRZX09XTkVSIiwiaWF0IjoxNjQ4NTY2ODE4LCJleHAiOjE2NTM3NTA4MTh9.bkhNPQHrPrwHsU19jWobe-UNHZCxSgF6LdTSm7kjSNo";
@@ -13,10 +14,9 @@ const checkAuthTokens = () => {
   return authTokens;
 };
 
-let headers = {};
 
 const authFetch = axios.create({
-  baseURL: "http://134.209.64.28:8084",
+  baseURL: `${domain}`,
   // baseURL: "http://admin.pmanager.online/",
   headers: {
     Authorization: checkAuthTokens(),
